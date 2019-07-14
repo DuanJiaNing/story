@@ -18,7 +18,6 @@ public class StoryDTO implements Serializable {
     private Integer state;
     private String title;
     private String content;
-    private String contentMd;
     private String summary;
     private Timestamp releaseDate;
     private Timestamp nearestModifyDate;

@@ -15,10 +15,8 @@ public class ResultModel<T> implements Serializable {
 
     private static final long serialVersionUID = 4780382608978369566L;
 
-    public static final int SUCCESS = 200;
-
-    public static final int FAIL = 500;
-    public static final int NULL = 501;
+    public static final int SUCCESS = 1;
+    public static final int FAIL = 0;
 
     private Object msg;
     private int code = SUCCESS;
@@ -48,11 +46,6 @@ public class ResultModel<T> implements Serializable {
 
     public static ResultModel fail() {
         ResultModel model = new ResultModel(null, FAIL);
-        return model;
-    }
-
-    public static ResultModel null_(Mode mode) {
-        ResultModel model = new ResultModel<>(mode, NULL);
         return model;
     }
 

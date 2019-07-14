@@ -1,7 +1,6 @@
 package com.duan.story.impl.statistics;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.duan.story.common.Mode;
 import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.*;
 import com.duan.story.dao.*;
@@ -9,6 +8,8 @@ import com.duan.story.entity.*;
 import com.duan.story.service.WriterService;
 import com.duan.story.service.statistics.StoryStatisticsService;
 import com.duan.story.util.DataConverter;
+import com.duan.story.util.ResultUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
  *
  * @author DuanJiaNing
  */
+@Slf4j
 @Service
 public class StoryStatisticsServiceImpl implements StoryStatisticsService {
 
@@ -58,14 +60,16 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
     public ResultModel<StoryStatisticsDTO> getStoryStatistics(Long storyId) {
         Story story = storyDao.findStoryById(storyId);
         if (story == null) {
-            return ResultModel.null_(Mode.STORY);
+            log.warn("story with id %s not exist", storyId);
+            return null;
         }
         StoryStatisticsDTO ss = DataConverter.map(story, StoryStatisticsDTO.class);
 
         // 统计信息
         StoryStatistics statistics = statisticsDao.findStoryStatisticsByStoryId(storyId);
         if (statistics == null) {
-            return ResultModel.null_(Mode.STORY_STATISTICS);
+            log.warn("story statistics with id %s not exist", storyId);
+            return null;
         }
         ss.setStatistics(DataConverter.map(statistics, StoryBaseStatisticsDTO.class));
 
@@ -123,7 +127,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
             ss.setLabels(ll);
         }
 
-        return ResultModel.success(ss);
+        return ResultUtil.success(ss);
     }
 
     @Override
