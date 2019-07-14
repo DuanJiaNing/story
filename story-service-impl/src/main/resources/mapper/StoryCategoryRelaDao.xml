@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.story.dao.StoryCategoryRelaDao">
+
+    <update id="update" parameterType="com.duan.story.entity.StoryCategoryRela">
+        UPDATE story_category_rela
+        <set>
+            <if test="storyId != null">
+                story_id=#{storyId},
+            </if>
+            <if test="categoryId != null">
+                category_id=#{categoryId},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <select id="listStoryCategoryRelaByStoryId" resultType="com.duan.story.entity.StoryCategoryRela">
+        select *
+        from story_category_rela
+        where story_id = #{value}
+    </select>
+
+    <insert id="insert" parameterType="com.duan.story.entity.StoryCategoryRela" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO story_category_rela (story_id, category_id, insert_time)
+        VALUE (#{storyId}, #{categoryId}, NOW())
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO story_category_rela (story_id, category_id, insert_time)
+        VALUES
+        <foreach collection="relas" item="rela" separator=",">
+            (#{rela.storyId}, #{rela.categoryId}, NOW())
+        </foreach>
+
+    </insert>
+
+    <delete id="delete">
+        DELETE
+        FROM story_category_rela
+        WHERE id = #{value}
+    </delete>
+
+    <delete id="deleteByStoryId">
+        DELETE
+        FROM story_category_rela
+        WHERE story_id = #{value}
+    </delete>
+
+</mapper>

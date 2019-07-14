@@ -1,0 +1,88 @@
+server:
+  port: 9090
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write_dates_as_timestamps: false
+    default-property-inclusion: NON_NULL
+  http:
+
+  messages:
+    basename: i18n/messages
+    cache-duration:
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 12345678
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: wall
+    maxActive: 100
+    initialSize: 5
+    maxWait: 60000
+    minIdle: 10
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  servlet:
+    multipart:
+      max-file-size: 50Mb
+      max-request-size: 128Mb
+
+dubbo:
+  application:
+    name: story-service
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20880
+  server: true
+
+app:
+  name: story-service
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  #  typeAliasesPackage: com.duan.story.service.entity
+  config: classpath:mybatis-config.xml
+  #  typeHandlersPackage: cn.com.*.dao
+  #  checkConfigLocation:
+  #  executorType:
+
+redis:
+  key:
+    expire: 2592000
+  token:
+    expire-day: 30
+
+jisu:
+  appkey: 5171de6ae9fd57a6
+  smssend-url: http://api.jisuapi.com/sms/send
+
+preference:
+  default:
+    story-count: 10
+    comment-count: 10
+    collect-count: 10
+    active-writer-count: 20
+  website:
+    manager-id: 1
+    manager-email: duan_jia_ning@163.com
+    sender-mail: 2213994603@qq.com
+    sender-mail-password: athupcbmeyvvdjif
+  file:
+    patch-import-story-temp-path: /usr/duan/story/temp/story-patch-import
+    patch-download-story-temp-path: /usr/duan/story/temp/story-patch-download
+    lucene-index-dir: /usr/duan/story/lucene

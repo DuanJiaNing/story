@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.story.dao.StoryDao">
+
+    <select id="listStory" resultType="com.duan.story.entity.Story">
+        SELECT *
+        FROM story
+    </select>
+
+    <update id="update" parameterType="com.duan.story.entity.Story">
+        UPDATE story
+        <set>
+            <if test="writerId != null">
+                writer_id=#{writerId},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="title != null">
+                title=#{title},
+            </if>
+            <if test="content != null">
+                content=#{content},
+            </if>
+            <if test="contentMd != null">
+                content_md=#{contentMd},
+            </if>
+            <if test="summary != null">
+                summary=#{summary},
+            </if>
+            <if test="releaseDate != null">
+                release_date=#{releaseDate},
+            </if>
+
+            nearest_modify_date=NOW(),
+        </set>
+        <where>
+            id=#{id}
+        </where>
+
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM story
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.duan.story.entity.Story" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO story (writer_id,
+                           state,
+                           title,
+                           content,
+                           content_md,
+                           summary,
+                           release_date,
+                           nearest_modify_date)
+        VALUE (#{writerId},
+               ifnull(#{state}, 0),
+               #{title},
+               #{content},
+               #{contentMd},
+               #{summary},
+               NOW(),
+               NOW(),
+               0)
+    </insert>
+
+    <select id="listStoryByIds" resultType="com.duan.story.entity.Story" parameterType="list">
+        SELECT *
+        FROM story b
+        WHERE b.id IN
+        <foreach collection="ids"
+                 item="id"
+                 open="("
+                 separator=","
+                 close=")">
+            #{id}
+        </foreach>
+        AND b.state=#{status}
+        <if test="sortRule != null">
+            order by #{sortRule.rule.code} #{sortRule.order.code}
+        </if>
+    </select>
+
+    <select id="findIdByWriterIdAndTitle" resultType="java.lang.Long">
+        SELECT b.id
+        FROM story b
+        WHERE b.writer_id = #{writerId}
+          AND b.title = #{title}
+    </select>
+
+    <select id="findStoryById" resultType="com.duan.story.entity.Story">
+        SELECT *
+        FROM story b
+        WHERE b.id = #{value}
+    </select>
+
+    <select id="listStoryByWriterId" resultType="com.duan.story.entity.Story">
+        SELECT b.id
+        FROM story b
+        WHERE b.writer_id = #{value}
+    </select>
+
+    <select id="countByWriterIdAndState" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM story
+        WHERE writer_id = #{writerId}
+          AND state = #{state}
+    </select>
+
+    <select id="listStoryByWriterIdAndFormat" resultType="com.duan.story.entity.Story">
+        SELECT
+        writer_id,
+        state,
+        title,
+        <choose>
+            <when test="format == 1">
+                content,
+            </when>
+            <otherwise>
+                content_md,
+            </otherwise>
+        </choose>
+        summary,
+        release_date,
+        nearest_modify_date,
+        FROM story
+        WHERE writer_id = #{writerId}
+    </select>
+
+    <select id="listIdByWriterId" resultType="java.lang.Long">
+        SELECT id
+        FROM story
+        WHERE writer_id = #{value}
+    </select>
+
+</mapper>

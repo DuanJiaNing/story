@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.story.dao.CollectDao">
+
+    <update id="update" parameterType="com.duan.story.entity.Collect">
+        UPDATE collect
+        <set>
+            <if test="storyId != null">
+                story_id=#{storyId},
+            </if>
+            <if test="collectorId != null">
+                collector_id=#{collectorId},
+            </if>
+            reason=#{reason},
+            category_id=#{categoryId},
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM collect
+        WHERE id = #{value}
+    </delete>
+
+    <delete id="deleteCollectByCollectorIdAndStoryId">
+        DELETE
+        FROM collect
+        WHERE story_id = #{storyId}
+          AND collector_id = #{collectorId}
+    </delete>
+
+    <select id="listCollect" resultType="com.duan.story.entity.Collect">
+        SELECT b.id, b.story_id, b.collector_id, b.reason, b.collect_date
+        FROM collect b
+                 left join story_statistics s on s.story_id = b.story_id
+        WHERE b.collector_id = #{collectorId}
+        order by s.${sortRule.rule.code} ${sortRule.order.code}
+    </select>
+
+    <select id="listCollectByStoryId" resultType="com.duan.story.entity.Collect">
+        SELECT *
+        FROM collect
+        WHERE story_id = #{value}
+    </select>
+
+    <select id="countByCollectorId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM collect
+        WHERE collector_id = #{value}
+    </select>
+
+    <select id="findCollectByCollectorIdAndStoryId" resultType="com.duan.story.entity.Collect">
+        SELECT *
+        FROM collect
+        WHERE story_id = #{storyId}
+          AND collector_id = #{collectorId}
+    </select>
+
+    <select id="listStoryIdByCollectorId" resultType="java.lang.Long">
+        SELECT story_id
+        FROM collect
+        WHERE collector_id = #{value}
+    </select>
+
+    <insert id="insert" parameterType="com.duan.story.entity.Collect" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO collect (story_id, collector_id, reason, collect_date)
+        VALUE (#{storyId}, #{collectorId}, #{reason}, NOW())
+    </insert>
+
+</mapper>
