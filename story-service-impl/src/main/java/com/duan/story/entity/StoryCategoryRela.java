@@ -13,10 +13,10 @@ import java.util.Date;
 @Data
 public class StoryCategoryRela implements Serializable {
 
-    private static final long serialVersionUID = -4484791807558105458L;
-    private Long id;
-    private Long storyId;
-    private Long categoryId;
+    private static final Long serialVersionUID = -4484791807558105458L;
+    private Integer id;
+    private Integer storyId;
+    private Integer categoryId;
     private Date insertTime;
 
 }

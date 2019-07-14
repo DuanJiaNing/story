@@ -18,7 +18,7 @@ public interface LinkService {
      * @param writerId id
      * @return 查询结果
      */
-    ResultModel<PageResult<LinkDTO>> listLink(Long writerId, Integer pageNum, Integer pageSize);
+    ResultModel<PageResult<LinkDTO>> listLink(Integer writerId, Integer pageNum, Integer pageSize);
 
     /**
      * 新增友情链接
@@ -30,7 +30,7 @@ public interface LinkService {
      * @param bewrite  描述
      * @return 新纪录id
      */
-    Long insertLink(Long writerId, String icon, String title, String url, String bewrite);
+    Integer insertLink(Integer writerId, String icon, String title, String url, String bewrite);
 
     /**
      * 删除链接
@@ -38,7 +38,7 @@ public interface LinkService {
      * @param linkId 链接id
      * @return 删除成功为true
      */
-    boolean deleteLink(Long linkId);
+    boolean deleteLink(Integer linkId);
 
     /**
      * 更新链接
@@ -50,7 +50,7 @@ public interface LinkService {
      * @param newBewrite 新的描述，不改变传 null
      * @return 更新失败为false
      */
-    boolean updateLink(Long linkId, String newIcon, String newTitle, String newUrl, String newBewrite);
+    boolean updateLink(Integer linkId, String newIcon, String newTitle, String newUrl, String newBewrite);
 
     /**
      * 获取链接
@@ -58,5 +58,5 @@ public interface LinkService {
      * @param linkId 链接id
      * @return 结果
      */
-    LinkDTO getLink(Long linkId);
+    LinkDTO getLink(Integer linkId);
 }

@@ -14,9 +14,9 @@ import java.util.List;
 @Repository
 public interface StoryCategoryRelaDao extends BaseDao<StoryCategoryRela> {
 
-    List<StoryCategoryRela> listStoryCategoryRelaByStoryId(Long storyId);
+    List<StoryCategoryRela> listStoryCategoryRelaByStoryId(Integer storyId);
 
     int insertBatch(@Param("relas") List<StoryCategoryRela> relas);
 
-    int deleteByStoryId(Long storyId);
+    int deleteByStoryId(Integer storyId);
 }

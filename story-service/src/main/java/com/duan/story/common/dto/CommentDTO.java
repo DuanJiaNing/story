@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 @Data
 public class CommentDTO implements Serializable {
 
-    private static final long serialVersionUID = 8591361444007793478L;
-    private Long id;
-    private Long storyId;
+    private static final Long serialVersionUID = 8591361444007793478L;
+    private Integer id;
+    private Integer storyId;
     private WriterDTO spokesman;
     private String content;
     private Timestamp releaseDate;

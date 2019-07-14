@@ -17,7 +17,7 @@ public interface StoryOperateService {
      * @param categoryId  收藏到收藏者自己的哪一个类别
      * @return 新纪录id
      */
-    Long insertCollect(Long storyId, Long collectorId, String reason, Long categoryId);
+    Integer insertCollect(Integer storyId, Integer collectorId, String reason, Integer categoryId);
 
     /**
      * 取消收藏，同时收藏数减一
@@ -26,7 +26,7 @@ public interface StoryOperateService {
      * @param storyId  id
      * @return 删除成功返回true
      */
-    boolean deleteCollect(Long writerId, Long storyId);
+    boolean deleteCollect(Integer writerId, Integer storyId);
 
     /**
      * 新增喜欢记录，同时喜欢数加一
@@ -35,7 +35,7 @@ public interface StoryOperateService {
      * @param likerId 给出喜欢的人的id
      * @return 喜欢数
      */
-    Integer insertLike(Long storyId, Long likerId);
+    Integer insertLike(Integer storyId, Integer likerId);
 
     /**
      * 取消喜欢，同时喜欢数减一
@@ -44,12 +44,12 @@ public interface StoryOperateService {
      * @param storyId id
      * @return 删除成功返回true
      */
-    boolean deleteLike(Long likerId, Long storyId);
+    boolean deleteLike(Integer likerId, Integer storyId);
 
     /**
      * 浏览次数加一
      *
      * @param storyId id
      */
-    void updateViewCountPlus(Long storyId);
+    void updateViewCountPlus(Integer storyId);
 }

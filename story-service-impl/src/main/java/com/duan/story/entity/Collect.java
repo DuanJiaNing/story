@@ -13,10 +13,10 @@ import java.sql.Timestamp;
 @Data
 public class Collect implements Serializable {
 
-    private static final long serialVersionUID = 2508868745231893082L;
-    private Long id;
-    private Long storyId;
-    private Long collectorId;
+    private static final Long serialVersionUID = 2508868745231893082L;
+    private Integer id;
+    private Integer storyId;
+    private Integer collectorId;
     private String reason;
     private Timestamp collectDate;
 

@@ -1,6 +1,5 @@
 package com.duan.story.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.duan.story.common.dto.ProfileDTO;
 import com.duan.story.common.dto.WriterDTO;
 import com.duan.story.dao.AccountDao;
@@ -10,6 +9,7 @@ import com.duan.story.entity.Profile;
 import com.duan.story.service.WriterService;
 import com.duan.story.util.DataConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class WriterServiceImpl implements WriterService {
     private ProfileDao profileDao;
 
     @Override
-    public List<WriterDTO> listWriter(List<Long> ids) {
+    public List<WriterDTO> listWriter(List<Integer> ids) {
         List<WriterDTO> writers = new ArrayList<>();
         ids.forEach(id -> {
             Account account = accountDao.findAccountById(id);

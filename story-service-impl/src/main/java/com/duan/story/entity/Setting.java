@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class Setting implements Serializable {
 
-    private static final long serialVersionUID = 3132345087362098153L;
-    private Long id;
-    private Long writerId;
+    private static final Long serialVersionUID = 3132345087362098153L;
+    private Integer id;
+    private Integer writerId;
 }

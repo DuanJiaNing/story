@@ -33,7 +33,7 @@
         WHERE writer_id = #{value}
     </select>
 
-    <select id="findIdByTitleAndWriterId" resultType="java.lang.Long">
+    <select id="findIdByTitleAndWriterId" resultType="java.lang.Integer">
         select id
         from category
         where title = #{title}
@@ -46,8 +46,8 @@
             <if test="writerId != null">
                 writer_id=#{writerId},
             </if>
-            <if test="iconId != null">
-                icon_id=#{iconId},
+            <if test="icon != null">
+                icon=#{icon},
             </if>
             <if test="title != null">
                 title=#{title},
@@ -73,8 +73,8 @@
     </delete>
 
     <insert id="insert" parameterType="com.duan.story.entity.Category" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO category (writer_id, icon_id, title, bewrite, create_date)
-        VALUE (#{writerId}, #{iconId}, #{title}, #{bewrite}, NOW())
+        INSERT INTO category (writer_id, icon, title, bewrite, create_date)
+        VALUE (#{writerId}, #{icon}, #{title}, #{bewrite}, NOW())
     </insert>
 
 </mapper>

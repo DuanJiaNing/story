@@ -17,7 +17,7 @@ public class WebsiteProperties {
     /**
      * 管理员id
      */
-    private Long managerId;
+    private Integer managerId;
 
     /**
      * 网站管理者的邮箱（反馈邮件发送到的邮箱）

@@ -14,9 +14,9 @@ import java.util.List;
 @Repository
 public interface LinkDao extends BaseDao<Link> {
 
-    List<Link> listLinkByWriterId(@Param("writerId") Long writerId);
+    List<Link> listLinkByWriterId(@Param("writerId") Integer writerId);
 
-    Long findLinkById(Long id);
+    Integer findLinkById(Integer id);
 
-    int countLinkByWriterId(Long writerId);
+    int countLinkByWriterId(Integer writerId);
 }

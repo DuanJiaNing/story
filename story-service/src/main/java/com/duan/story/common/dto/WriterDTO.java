@@ -13,8 +13,8 @@ import java.sql.Timestamp;
 @Data
 public class WriterDTO implements Serializable {
 
-    private static final long serialVersionUID = -883473780563116771L;
-    private Long id;
+    private static final Long serialVersionUID = -883473780563116771L;
+    private Integer id;
     private ProfileDTO profile;
     private String username;
     private Timestamp registerDate;

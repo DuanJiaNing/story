@@ -17,21 +17,21 @@ public interface StoryDao extends BaseDao<Story> {
 
     List<Story> listStory();
 
-    List<Story> listStoryByIds(@Param("ids") List<Long> ids, @Param("status") int status,
+    List<Story> listStoryByIds(@Param("ids") List<Integer> ids, @Param("status") int status,
                                @Param("sortRule") SortRule sortRule);
 
-    Long findIdByWriterIdAndTitle(@Param("writerId") Long writerId,
+    Integer findIdByWriterIdAndTitle(@Param("writerId") Integer writerId,
                                   @Param("title") String title);
 
-    Story findStoryById(Long id);
+    Story findStoryById(Integer id);
 
-    List<Story> listStoryByWriterId(Long writerId);
+    List<Story> listStoryByWriterId(Integer writerId);
 
-    Integer countByWriterIdAndState(@Param("writerId") Long writerId,
+    Integer countByWriterIdAndState(@Param("writerId") Integer writerId,
                                     @Param("state") int state);
 
-    List<Story> listStoryByWriterIdAndFormat(@Param("writerId") Long writerId,
+    List<Story> listStoryByWriterIdAndFormat(@Param("writerId") Integer writerId,
                                              @Param("format") int format);
 
-    List<Long> listIdByWriterId(Long writerId);
+    List<Integer> listIdByWriterId(Integer writerId);
 }

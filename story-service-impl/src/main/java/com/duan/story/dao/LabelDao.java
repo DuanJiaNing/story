@@ -14,13 +14,13 @@ import java.util.List;
 @Repository
 public interface LabelDao extends BaseDao<Label> {
 
-    List<Label> listLabelByIds(@Param("ids") List<Long> ids);
+    List<Label> listLabelByIds(@Param("ids") List<Integer> ids);
 
-    Label findLabelById(Long id);
+    Label findLabelById(Integer id);
 
     List<Label> listLabel();
 
-    List<Label> listLabelByWriterId(@Param("writerId") Long writerId);
+    List<Label> listLabelByWriterId(@Param("writerId") Integer writerId);
 
-    Integer countByWriterId(Long writerId);
+    Integer countByWriterId(Integer writerId);
 }

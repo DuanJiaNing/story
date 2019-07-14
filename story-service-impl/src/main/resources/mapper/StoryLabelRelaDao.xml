@@ -35,7 +35,7 @@
         INSERT INTO story_label_rela (story_id, label_id, insert_time)
         VALUES
         <foreach collection="relas" item="rela" separator=",">
-            (#{storyId}, #{labelId}, NOW())
+            (#{rela.storyId}, #{rela.labelId}, NOW())
         </foreach>
     </insert>
 

@@ -47,7 +47,7 @@
 
     <insert id="insert" parameterType="com.duan.story.entity.Story" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO story (writer_id, state, title, content, summary, release_date, nearest_modify_date)
-        VALUE (#{writerId}, ifnull(#{state}, 0), #{title}, #{content}, #{summary}, NOW(), NOW(), 0)
+        VALUE (#{writerId}, #{state}, #{title}, #{content}, #{summary}, NOW(), NOW())
     </insert>
 
     <select id="listStoryByIds" resultType="com.duan.story.entity.Story" parameterType="list">
@@ -67,7 +67,7 @@
         </if>
     </select>
 
-    <select id="findIdByWriterIdAndTitle" resultType="java.lang.Long">
+    <select id="findIdByWriterIdAndTitle" resultType="java.lang.Integer">
         SELECT b.id
         FROM story b
         WHERE b.writer_id = #{writerId}
@@ -99,7 +99,7 @@
         WHERE writer_id = #{writerId}
     </select>
 
-    <select id="listIdByWriterId" resultType="java.lang.Long">
+    <select id="listIdByWriterId" resultType="java.lang.Integer">
         SELECT id
         FROM story
         WHERE writer_id = #{value}

@@ -14,11 +14,11 @@ import java.util.List;
 @Repository
 public interface CommentDao extends BaseDao<Comment> {
 
-    List<Comment> listCommentByStoryIdAndState(@Param("storyId") Long storyId,
+    List<Comment> listCommentByStoryIdAndState(@Param("storyId") Integer storyId,
                                                @Param("status") int status);
 
-    List<Comment> listCommentByStoryId(Long storyId);
+    List<Comment> listCommentByStoryId(Integer storyId);
 
-    Comment findCommentById(Long id);
+    Comment findCommentById(Integer id);
 
 }

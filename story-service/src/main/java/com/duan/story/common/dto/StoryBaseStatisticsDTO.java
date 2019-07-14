@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 @Data
 public class StoryBaseStatisticsDTO implements Serializable {
 
-    private static final long serialVersionUID = 8922651148402857438L;
-    private Long id;
-    private Long storyId;
+    private static final Long serialVersionUID = 8922651148402857438L;
+    private Integer id;
+    private Integer storyId;
     private Integer commentCount;
     private Integer viewCount;
     private Integer replyCommentCount;

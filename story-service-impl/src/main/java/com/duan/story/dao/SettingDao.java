@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SettingDao extends BaseDao<Setting> {
 
-    Setting findSettingByWriterId(Long writerId);
+    Setting findSettingByWriterId(Integer writerId);
 
 }

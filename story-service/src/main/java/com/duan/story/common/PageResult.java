@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class PageResult<T> implements Serializable {
 
-    private static final long serialVersionUID = -4349075169318140193L;
+    private static final Long serialVersionUID = -4349075169318140193L;
     private Integer total;
     private List<T> list;
     private Integer totalPage;

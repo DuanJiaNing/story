@@ -13,8 +13,9 @@ import java.sql.Timestamp;
 @Data
 public class StoryDTO implements Serializable {
 
-    private Long id;
-    private Long writerId;
+    private static final long serialVersionUID = 5863607750529596642L;
+    private Integer id;
+    private Integer writerId;
     private Integer state;
     private String title;
     private String content;

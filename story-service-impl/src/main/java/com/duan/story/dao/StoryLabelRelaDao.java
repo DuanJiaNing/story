@@ -14,10 +14,10 @@ import java.util.List;
 @Repository
 public interface StoryLabelRelaDao extends BaseDao<StoryLabelRela> {
 
-    List<StoryLabelRela> listStoryLabelRelaByStoryId(Long storyId);
+    List<StoryLabelRela> listStoryLabelRelaByStoryId(Integer storyId);
 
     int insertBatch(@Param("relas") List<StoryLabelRela> relas);
 
-    int deleteByStoryId(Long storyId);
+    int deleteByStoryId(Integer storyId);
 
 }

@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 @Data
 public class Story implements Serializable {
 
-    private static final long serialVersionUID = -34589740054806375L;
-    private Long id;
-    private Long writerId;
+    private static final Long serialVersionUID = -34589740054806375L;
+    private Integer id;
+    private Integer writerId;
     private Integer state;
     private String title;
     private String content;

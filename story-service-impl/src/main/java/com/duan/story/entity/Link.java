@@ -12,10 +12,10 @@ import java.io.Serializable;
 @Data
 public class Link implements Serializable {
 
-    private static final long serialVersionUID = -6606102132213390615L;
-    private Long id;
-    private Long writerId;
-    private Long iconId;
+    private static final Long serialVersionUID = -6606102132213390615L;
+    private Integer id;
+    private Integer writerId;
+    private Integer iconId;
     private String title;
     private String url;
     private String bewrite;

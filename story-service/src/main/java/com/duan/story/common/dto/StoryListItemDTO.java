@@ -13,8 +13,8 @@ import java.sql.Timestamp;
 @Data
 public class StoryListItemDTO implements Serializable {
 
-    private static final long serialVersionUID = -5072404723143229440L;
-    private Long id;
+    private static final Long serialVersionUID = -5072404723143229440L;
+    private Integer id;
     private CategoryDTO[] categories;
     private LabelDTO[] labels;
     private Integer state;

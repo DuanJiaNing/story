@@ -21,12 +21,12 @@
                                       word_count,
                                       release_date)
         VALUE (#{storyId},
-               ifnull(#{commentCount}, 0),
-               ifnull(#{viewCount}, 0),
-               ifnull(#{replyCommentCount}, 0),
-               ifnull(#{collectCount}, 0),
-               ifnull(#{likeCount}, 0),
-               ifnull(#{wordCount}, 0),
+               #{commentCount},
+               #{viewCount},
+               #{replyCommentCount},
+               #{collectCount},
+               #{likeCount},
+               #{wordCount},
                NOW())
     </insert>
 

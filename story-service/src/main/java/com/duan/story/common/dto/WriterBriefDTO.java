@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class WriterBriefDTO implements Serializable {
 
-    private static final long serialVersionUID = 4587186975222933098L;
+    private static final Long serialVersionUID = 4587186975222933098L;
     private WriterStatisticsDTO statistics;
     private WriterDTO writer;
 }

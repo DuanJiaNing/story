@@ -61,7 +61,7 @@
           AND collector_id = #{collectorId}
     </select>
 
-    <select id="listStoryIdByCollectorId" resultType="java.lang.Long">
+    <select id="listStoryIdByCollectorId" resultType="java.lang.Integer">
         SELECT story_id
         FROM collect
         WHERE collector_id = #{value}

@@ -13,8 +13,8 @@ import java.sql.Timestamp;
 @Data
 public class Account implements Serializable {
 
-    private static final long serialVersionUID = -3646949238115309095L;
-    private Long id;
+    private static final long serialVersionUID = 2687551997656155242L;
+    private Integer id;
     private String username;
     private String password;
     private Timestamp registerDate;

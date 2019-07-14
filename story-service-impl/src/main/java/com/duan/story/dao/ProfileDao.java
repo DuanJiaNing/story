@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProfileDao extends BaseDao<Profile> {
 
-    Profile findProfileByWriterId(Long writerId);
+    Profile findProfileByWriterId(Integer writerId);
 
     Profile findProfileByPhone(String phone);
 }

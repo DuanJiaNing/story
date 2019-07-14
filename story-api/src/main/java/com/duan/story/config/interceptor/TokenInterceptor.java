@@ -77,7 +77,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 
         try {
             OnlineService onlineService = SpringUtil.getBean(OnlineService.class);
-            Long bloggerId = onlineService.getLoginWriterId(token);
+            Integer bloggerId = onlineService.getLoginWriterId(token);
             if (bloggerId == null) {
                 return true;
             }

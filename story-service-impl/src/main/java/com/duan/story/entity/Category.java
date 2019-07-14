@@ -13,10 +13,10 @@ import java.sql.Timestamp;
 @Data
 public class Category implements Serializable {
 
-    private static final long serialVersionUID = -7413640669767387180L;
-    private Long id;
-    private Long writerId;
-    private Long iconId;
+    private static final Long serialVersionUID = -7413640669767387180L;
+    private Integer id;
+    private Integer writerId;
+    private String icon;
     private String title;
     private String bewrite;
     private Timestamp createDate;

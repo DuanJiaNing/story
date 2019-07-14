@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 @Data
 public class LabelDTO implements Serializable {
 
-    private static final long serialVersionUID = 5177571584390818652L;
-    private Long id;
-    private Long writerId;
+    private static final Long serialVersionUID = 5177571584390818652L;
+    private Integer id;
+    private Integer writerId;
     private String title;
     private Timestamp createDate;
 }

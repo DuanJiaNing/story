@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class LoginVO implements Serializable {
 
-    private static final long serialVersionUID = 8732436864285128268L;
+    private static final Long serialVersionUID = 8732436864285128268L;
     private String username;
     private String password;
 

@@ -13,8 +13,8 @@ import java.sql.Timestamp;
 @Data
 public class LoginResultDTO implements Serializable {
 
-    private static final long serialVersionUID = 8778909310699470335L;
-    private Long id;
+    private static final Long serialVersionUID = 8778909310699470335L;
+    private Integer id;
     private String username;
     private String usernameBase64;
     private String token;

@@ -16,6 +16,6 @@ public interface EmailService {
      * @param contact   发送者留的联系方式，如果有的话
      * @return 邮件发送成功返回 true
      */
-    boolean sendFeedback(Long writerId, String subject, String content, String contact);
+    boolean sendFeedback(Integer writerId, String subject, String content, String contact);
 
 }

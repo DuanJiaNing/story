@@ -1,6 +1,6 @@
 package com.duan.story.impl.validate;
 
-import com.alibaba.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Service;
 import com.duan.story.service.validate.StoryValidateService;
 
 /**
@@ -12,17 +12,17 @@ import com.duan.story.service.validate.StoryValidateService;
 public class StoryValidateServiceImpl implements StoryValidateService {
 
     @Override
-    public boolean checkStoryExist(Long storyId) {
+    public boolean checkStoryExist(Integer storyId) {
         return false;
     }
 
     @Override
-    public boolean checkLabelsExist(Long labelId) {
+    public boolean checkLabelsExist(Integer labelId) {
         return false;
     }
 
     @Override
-    public boolean isCreatorOfStory(Long writerId, Long storyId) {
+    public boolean isCreatorOfStory(Integer writerId, Integer storyId) {
         return false;
     }
 
@@ -38,7 +38,7 @@ public class StoryValidateServiceImpl implements StoryValidateService {
     }
 
     @Override
-    public boolean checkStoryStatisticExist(Long storyId) {
+    public boolean checkStoryStatisticExist(Integer storyId) {
         return false;
     }
 }

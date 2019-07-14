@@ -20,7 +20,7 @@ public interface LikeService {
      * @param storyId  id
      * @return 已喜欢返回 true
      */
-    boolean liked(Long writerId, Long storyId);
+    boolean liked(Integer writerId, Integer storyId);
 
     /**
      * 获取作者喜欢的故事列表
@@ -29,7 +29,7 @@ public interface LikeService {
      * @param sortRule 排序规则
      * @return 查询结果
      */
-    ResultModel<PageResult<FavoriteStoryListItemDTO>> listLike(Long writerId, Integer pageNum, Integer pageSize,
+    ResultModel<PageResult<FavoriteStoryListItemDTO>> listLike(Integer writerId, Integer pageNum, Integer pageSize,
                                                                SortRule sortRule);
 
     /**
@@ -38,5 +38,5 @@ public interface LikeService {
      * @param writerId id
      * @return 查询结果
      */
-    int countWriterLikeNum(Long writerId);
+    int countWriterLikeNum(Integer writerId);
 }

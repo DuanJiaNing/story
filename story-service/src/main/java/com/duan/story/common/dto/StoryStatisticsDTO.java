@@ -14,8 +14,8 @@ import java.util.List;
 @Data
 public class StoryStatisticsDTO implements Serializable {
 
-    private static final long serialVersionUID = -4213943192538419571L;
-    private Long id;
+    private static final Long serialVersionUID = -4213943192538419571L;
+    private Integer id;
     private StoryBaseStatisticsDTO statistics;
     private List<CategoryDTO> categories;
     private List<LabelDTO> labels;

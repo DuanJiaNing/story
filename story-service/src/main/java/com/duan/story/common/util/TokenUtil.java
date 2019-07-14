@@ -19,25 +19,25 @@ public class TokenUtil {
     /**
      * 获取加密 token
      */
-    public static String getToken(Long uid) {
+    public static String getToken(Integer uid) {
         return AESUtil.aesEncrypt(tokenContent(uid), key);
     }
 
     /**
      * 获取 token key
      */
-    public static String getTokenKey(Long uid) {
+    public static String getTokenKey(Integer uid) {
         return appName + separator + SUFFIX + separator + uid;
     }
 
-    private static String tokenContent(Long uid) {
+    private static String tokenContent(Integer uid) {
         return String.valueOf(System.currentTimeMillis()) + separator + uid;
     }
 
     /**
      * 解密
      */
-    public static Long decode(String token) throws Exception {
+    public static Integer decode(String token) throws Exception {
 
         String str = new String(token.getBytes("UTF-8"), "ISO-8859-1");
 
@@ -48,7 +48,7 @@ public class TokenUtil {
         String time = content[0];
         String uid = content[1];
 
-        return Long.valueOf(uid);
+        return Integer.valueOf(uid);
 
     }
 

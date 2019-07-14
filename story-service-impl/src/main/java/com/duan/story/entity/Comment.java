@@ -13,11 +13,11 @@ import java.sql.Timestamp;
 @Data
 public class Comment implements Serializable {
 
-    private static final long serialVersionUID = -7031768607524908823L;
-    private Long id;
-    private Long storyId;
-    private Long spokesmanId;
-    private Long listenerId;
+    private static final Long serialVersionUID = -7031768607524908823L;
+    private Integer id;
+    private Integer storyId;
+    private Integer spokesmanId;
+    private Integer listenerId;
     private String content;
     private Timestamp releaseDate;
     private Integer state;

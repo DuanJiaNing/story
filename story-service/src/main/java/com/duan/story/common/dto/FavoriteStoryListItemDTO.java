@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 @Data
 public class FavoriteStoryListItemDTO implements Serializable {
 
-    private static final long serialVersionUID = -60440342784457887L;
-    private Long id;
-    private Long writerId;
+    private static final Long serialVersionUID = -60440342784457887L;
+    private Integer id;
+    private Integer writerId;
     private StoryListItemDTO story;
     private WriterDTO writer;
     private String reason;

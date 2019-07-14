@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface WriterService {
 
-    List<WriterDTO> listWriter(List<Long> ids);
+    List<WriterDTO> listWriter(List<Integer> ids);
 
 }

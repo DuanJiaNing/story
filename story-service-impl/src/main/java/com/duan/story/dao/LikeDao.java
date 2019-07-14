@@ -15,14 +15,14 @@ import java.util.List;
 @Repository
 public interface LikeDao extends BaseDao<Like> {
 
-    int deleteLikeByLikerIdAndStoryId(@Param("likerId") Long likerId, @Param("storyId") Long storyId);
+    int deleteLikeByLikerIdAndStoryId(@Param("likerId") Integer likerId, @Param("storyId") Integer storyId);
 
-    List<Like> listLikeByStoryId(Long storyId);
+    List<Like> listLikeByStoryId(Integer storyId);
 
-    Integer countLikeByLikerId(Long likerId);
+    Integer countLikeByLikerId(Integer likerId);
 
-    Like findLikeByLikerIdAndStoryId(@Param("likerId") Long likerId, @Param("storyId") Long storyId);
+    Like findLikeByLikerIdAndStoryId(@Param("likerId") Integer likerId, @Param("storyId") Integer storyId);
 
-    List<Like> listLikeByLikerId(@Param("likerId") Long likerId, @Param("sortRule") SortRule sortRule);
+    List<Like> listLikeByLikerId(@Param("likerId") Integer likerId, @Param("sortRule") SortRule sortRule);
 
 }

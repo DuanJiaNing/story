@@ -44,10 +44,10 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // 序列换成 json 时,将所有的 long 变成 string , json 的整型只在 int 范围内，long 会丢失精度
+        // 序列换成 json 时,将所有的 Integer 变成 string , json 的整型只在 int 范围内，Integer 会丢失精度
         SimpleModule simpleModule = new SimpleModule();
-        simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
-        simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        simpleModule.addSerializer(Integer.class, ToStringSerializer.instance);
+        simpleModule.addSerializer(Integer.TYPE, ToStringSerializer.instance);
         objectMapper.registerModule(simpleModule);
         jackson2HttpMessageConverter.setObjectMapper(objectMapper);
         return jackson2HttpMessageConverter;

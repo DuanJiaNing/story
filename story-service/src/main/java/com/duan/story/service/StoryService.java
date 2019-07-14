@@ -24,7 +24,7 @@ public interface StoryService {
      * @param labels     标签
      * @return 新纪录id
      */
-    ResultModel insertStory(StoryDTO story, List<Long> categories, List<Long> labels);
+    ResultModel insertStory(StoryDTO story, List<Integer> categories, List<Integer> labels);
 
     /**
      * 1 更新故事
@@ -32,7 +32,7 @@ public interface StoryService {
      *
      * @return 更新失败为false
      */
-    boolean updateStory(StoryDTO story, List<Long> categories, List<Long> labels);
+    boolean updateStory(StoryDTO story, List<Integer> categories, List<Integer> labels);
 
     /**
      * 1 删除故事
@@ -42,7 +42,7 @@ public interface StoryService {
      * @param storyId  id
      * @return 删除的记录
      */
-    boolean deleteStory(Long storyId);
+    boolean deleteStory(Integer storyId);
 
     /**
      * 批量删除故事
@@ -50,7 +50,7 @@ public interface StoryService {
      * @param storyIds id
      * @return 操作失败为false
      */
-    boolean deleteStoryPatch(Long[] storyIds);
+    boolean deleteStoryPatch(Integer[] storyIds);
 
     /**
      * 检查故事是否存在
@@ -58,7 +58,7 @@ public interface StoryService {
      * @param storyId id
      * @return 存在返回true，否则false
      */
-    boolean getStoryForExistCheck(Long storyId);
+    boolean getStoryForExistCheck(Integer storyId);
 
     /**
      * 获得故事
@@ -66,7 +66,7 @@ public interface StoryService {
      * @param storyId id
      * @return 查询结果
      */
-    ResultModel<StoryDTO> getStory(Long storyId);
+    ResultModel<StoryDTO> getStory(Integer storyId);
 
     /**
      * 获得故事id
@@ -75,7 +75,7 @@ public interface StoryService {
      * @param storyTitle 标题
      * @return 存在返回id，否则-1
      */
-    Long getStoryId(Long writerId, String storyTitle);
+    Integer getStoryId(Integer writerId, String storyTitle);
 
     /**
      * 通过上传的 zip 文件批量导入故事
@@ -84,7 +84,7 @@ public interface StoryService {
      * @param writerId id
      * @return 成功导入的故事标题和id
      */
-    List<StoryImportTitleIdDTO> insertStoryPatch(FileVO file, Long writerId);
+    List<StoryImportTitleIdDTO> insertStoryPatch(FileVO file, Integer writerId);
 
     /**
      * 生成用于 [导出所有故事] 功能的 zip 文件
@@ -93,5 +93,5 @@ public interface StoryService {
      * @param format   格式
      * @return zip 文件全路径
      */
-    String getAllStoryForDownload(Long writerId, StoryExportFormatEnum format);
+    String getAllStoryForDownload(Integer writerId, StoryExportFormatEnum format);
 }

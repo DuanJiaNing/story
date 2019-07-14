@@ -12,8 +12,8 @@ import java.io.Serializable;
 @Data
 public class SettingDTO implements Serializable {
 
-    private static final long serialVersionUID = 3960419989520032049L;
-    private Long id;
-    private Long writerId;
+    private static final Long serialVersionUID = 3960419989520032049L;
+    private Integer id;
+    private Integer writerId;
 
 }

@@ -27,8 +27,8 @@ public interface StoryFilterService {
      * @param status      状态
      * @return 查询结果
      */
-    ResultModel<PageResult<StoryListItemDTO>> listFilter(List<Long> categoryIds, List<Long> labelIds, String keyWord,
-                                                         Long writerId,
+    ResultModel<PageResult<StoryListItemDTO>> listFilter(List<Integer> categoryIds, List<Integer> labelIds, String keyWord,
+                                                         Integer writerId,
                                                          Integer pageNum,
                                                          Integer pageSize,
                                                          SortRule sortRule,
@@ -44,7 +44,7 @@ public interface StoryFilterService {
      * @param status      状态
      * @return 查询结果
      */
-    ResultModel<PageResult<StoryListItemDTO>> listFilter(List<Long> categoryIds, List<Long> labelIds, Long writerId,
+    ResultModel<PageResult<StoryListItemDTO>> listFilter(List<Integer> categoryIds, List<Integer> labelIds, Integer writerId,
                                                          Integer pageNum,
                                                          Integer pageSize,
                                                          SortRule sortRule,

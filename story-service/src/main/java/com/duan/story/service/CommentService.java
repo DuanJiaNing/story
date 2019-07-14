@@ -21,7 +21,7 @@ public interface CommentService {
      * @param content     评论内容
      * @return 新纪录id
      */
-    Long insertComment(Long storyId, Long spokesmanId, Long listenerId, int state, String content);
+    Integer insertComment(Integer storyId, Integer spokesmanId, Integer listenerId, int state, String content);
 
     /**
      * 删除评论
@@ -30,7 +30,7 @@ public interface CommentService {
      * @param spokesmanId id
      * @return 删除成功返回true
      */
-    boolean deleteComment(Long commentId, Long spokesmanId);
+    boolean deleteComment(Integer commentId, Integer spokesmanId);
 
     /**
      * 获取评论 列表
@@ -40,6 +40,6 @@ public interface CommentService {
      * @param pageNum  页数量
      * @return 结果
      */
-    ResultModel<PageResult<CommentDTO>> listStoryComment(Long storyId, Integer pageSize, Integer pageNum);
+    ResultModel<PageResult<CommentDTO>> listStoryComment(Integer storyId, Integer pageSize, Integer pageNum);
 
 }

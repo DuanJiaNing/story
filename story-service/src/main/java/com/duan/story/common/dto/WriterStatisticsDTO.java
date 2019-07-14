@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class WriterStatisticsDTO implements Serializable {
 
-    private static final long serialVersionUID = 7911758004771633308L;
+    private static final Long serialVersionUID = 7911758004771633308L;
     private Integer storyCount;
     private Integer wordCount;
     private Integer likeCount;

@@ -1,6 +1,5 @@
 package com.duan.story;
 
-import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +14,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @MapperScan("com.duan.story.dao")
 @ImportResource("classpath:spring/spring-*.xml")
-@EnableDubbo(scanBasePackages = "com.duan.story.impl")
+//@EnableDubbo(scanBasePackages = "com.duan.story.impl")
 public class Application {
 
     public static void main(String[] args) {

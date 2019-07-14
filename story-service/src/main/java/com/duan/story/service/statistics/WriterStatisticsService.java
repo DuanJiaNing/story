@@ -20,7 +20,7 @@ public interface WriterStatisticsService {
      * @param writerId id
      * @return 查询结果
      */
-    ResultModel<WriterStatisticsDTO> getWriterStatistics(Long writerId);
+    ResultModel<WriterStatisticsDTO> getWriterStatistics(Integer writerId);
 
     /**
      * 根据 id 获取作者的 dto 对象
@@ -28,6 +28,6 @@ public interface WriterStatisticsService {
      * @param ids id
      * @return 数组
      */
-    List<WriterDTO> listWriter(List<Long> ids);
+    List<WriterDTO> listWriter(List<Integer> ids);
 
 }

@@ -15,16 +15,16 @@ import java.util.List;
 @Repository
 public interface CollectDao extends BaseDao<Collect> {
 
-    int deleteCollectByCollectorIdAndStoryId(@Param("collectorId") Long collectorId, @Param("storyId") Long storyId);
+    int deleteCollectByCollectorIdAndStoryId(@Param("collectorId") Integer collectorId, @Param("storyId") Integer storyId);
 
-    List<Collect> listCollect(@Param("collectorId") Long collectorId,
+    List<Collect> listCollect(@Param("collectorId") Integer collectorId,
                               @Param("sortRule") SortRule sortRule);
 
-    List<Collect> listCollectByStoryId(Long storyId);
+    List<Collect> listCollectByStoryId(Integer storyId);
 
-    Integer countByCollectorId(Long collectorId);
+    Integer countByCollectorId(Integer collectorId);
 
-    Collect findCollectByCollectorIdAndStoryId(@Param("collectorId") Long collectorId, @Param("storyId") Long storyId);
+    Collect findCollectByCollectorIdAndStoryId(@Param("collectorId") Integer collectorId, @Param("storyId") Integer storyId);
 
-    List<Long> listStoryIdByCollectorId(Long collectorId);
+    List<Integer> listStoryIdByCollectorId(Integer collectorId);
 }

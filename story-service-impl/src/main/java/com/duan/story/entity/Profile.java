@@ -12,9 +12,9 @@ import java.io.Serializable;
 @Data
 public class Profile implements Serializable {
 
-    private static final long serialVersionUID = -1116962500544770692L;
-    private Long id;
-    private Long writerId;
+    private static final Long serialVersionUID = -1116962500544770692L;
+    private Integer id;
+    private Integer writerId;
     private String avatar;
     private String phone;
     private String email;

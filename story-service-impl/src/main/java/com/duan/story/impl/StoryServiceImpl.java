@@ -1,10 +1,10 @@
 package com.duan.story.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.StoryDTO;
 import com.duan.story.common.dto.StoryImportTitleIdDTO;
 import com.duan.story.common.enums.StoryExportFormatEnum;
+import com.duan.story.common.enums.StoryStatusEnum;
 import com.duan.story.common.vo.FileVO;
 import com.duan.story.dao.StoryCategoryRelaDao;
 import com.duan.story.dao.StoryDao;
@@ -21,6 +21,7 @@ import com.duan.story.util.DataConverter;
 import com.duan.story.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
@@ -55,29 +56,40 @@ public class StoryServiceImpl implements StoryService {
     private StoryLuceneIndexManager storyLuceneIndexManager;
 
     @Override
-    public ResultModel<StoryDTO> insertStory(StoryDTO story, List<Long> categories, List<Long> labels) {
+    public ResultModel<StoryDTO> insertStory(StoryDTO story, List<Integer> categories, List<Integer> labels) {
         if (story == null) {
-            return ResultUtil.parameterRequireNoNull();
+            log.error("story can not be null");
+            return ResultUtil.fail(5000);
         }
+
+        if (story.getState() == null || StoryStatusEnum.valueOf(story.getState()) == null) {
+            return ResultUtil.fail(5002);
+        }
+
         Story stortEntity = DataConverter.map(story, Story.class);
 
         // insert story
         // TODO story content validate
-        int effect = storyDao.insert(stortEntity);
-        if (effect <= 0) {
+        if (storyDao.insert(stortEntity) <= 0) {
+            log.error("got error when insert story");
             return ResultUtil.fail();
         }
 
         // insert labels and categories
-        Long storyId = story.getId();
+        Integer storyId = stortEntity.getId();
         insertCategoryAndLabels(storyId, categories, labels);
 
-        // insert data to story.story_statistics
+        // insert data to story statistics
         StoryStatistics statistics = new StoryStatistics();
+        statistics.setCommentCount(0);
+        statistics.setViewCount(0);
+        statistics.setReplyCommentCount(0);
+        statistics.setCollectCount(0);
+        statistics.setLikeCount(0);
         statistics.setStoryId(storyId);
-        statistics.setWordCount(storyManager.calcContentLength(story.getContent()));
-        effect = statisticsDao.insert(statistics);
-        if (effect <= 0) {
+        statistics.setWordCount(storyManager.calcContentLength(stortEntity.getContent()));
+        if (statisticsDao.insert(statistics) <= 0) {
+            log.error("got error when insert story statistics");
             return ResultUtil.fail();
         }
 
@@ -92,10 +104,10 @@ public class StoryServiceImpl implements StoryService {
         return ResultUtil.success(story);
     }
 
-    private void insertCategoryAndLabels(Long storyId, List<Long> categories, List<Long> labels) {
+    private void insertCategoryAndLabels(Integer storyId, List<Integer> categories, List<Integer> labels) {
         if (!CollectionUtils.isEmpty(categories)) {
             List<StoryCategoryRela> relas = new ArrayList<>();
-            for (Long ca : categories) {
+            for (Integer ca : categories) {
                 StoryCategoryRela rela = new StoryCategoryRela();
                 rela.setStoryId(storyId);
                 rela.setCategoryId(ca);
@@ -107,7 +119,7 @@ public class StoryServiceImpl implements StoryService {
 
         if (!CollectionUtils.isEmpty(labels)) {
             List<StoryLabelRela> relas = new ArrayList<>();
-            for (Long ca : labels) {
+            for (Integer ca : labels) {
                 StoryLabelRela rela = new StoryLabelRela();
                 rela.setStoryId(storyId);
                 rela.setLabelId(ca);
@@ -119,42 +131,42 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public boolean updateStory(StoryDTO story, List<Long> categories, List<Long> labels) {
+    public boolean updateStory(StoryDTO story, List<Integer> categories, List<Integer> labels) {
         return false;
     }
 
     @Override
-    public boolean deleteStory(Long storyId) {
+    public boolean deleteStory(Integer storyId) {
         return false;
     }
 
     @Override
-    public boolean deleteStoryPatch(Long[] storyIds) {
+    public boolean deleteStoryPatch(Integer[] storyIds) {
         return false;
     }
 
     @Override
-    public boolean getStoryForExistCheck(Long storyId) {
+    public boolean getStoryForExistCheck(Integer storyId) {
         return false;
     }
 
     @Override
-    public ResultModel<StoryDTO> getStory(Long storyId) {
+    public ResultModel<StoryDTO> getStory(Integer storyId) {
         return null;
     }
 
     @Override
-    public Long getStoryId(Long writerId, String storyTitle) {
+    public Integer getStoryId(Integer writerId, String storyTitle) {
         return null;
     }
 
     @Override
-    public List<StoryImportTitleIdDTO> insertStoryPatch(FileVO file, Long writerId) {
+    public List<StoryImportTitleIdDTO> insertStoryPatch(FileVO file, Integer writerId) {
         return null;
     }
 
     @Override
-    public String getAllStoryForDownload(Long writerId, StoryExportFormatEnum format) {
+    public String getAllStoryForDownload(Integer writerId, StoryExportFormatEnum format) {
         return null;
     }
 }

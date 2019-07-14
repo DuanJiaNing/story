@@ -14,7 +14,7 @@ public interface OnlineService {
     /**
      * 获得登录账号id，未登录返回 null
      */
-    Long getLoginWriterId(String token);
+    Integer getLoginWriterId(String token);
 
     /**
      * 登入
@@ -24,5 +24,5 @@ public interface OnlineService {
     /**
      * 登出
      */
-    ResultModel logout(Long uid);
+    ResultModel logout(Integer uid);
 }

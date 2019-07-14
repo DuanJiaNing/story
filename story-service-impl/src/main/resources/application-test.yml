@@ -9,9 +9,6 @@ spring:
     default-property-inclusion: NON_NULL
   http:
 
-  messages:
-    basename: i18n/messages
-    cache-duration:
   redis:
     host: 127.0.0.1
     password:
@@ -48,16 +45,6 @@ mybatis:
   #  typeHandlersPackage: cn.com.*.dao
   #  checkConfigLocation:
   #  executorType:
-
-dubbo:
-  application:
-    name: story-service
-  registry:
-    address: zookeeper://127.0.0.1:2181
-  protocol:
-    name: dubbo
-    port: 20880
-  server: true
 
 preference:
   default:

@@ -13,7 +13,7 @@ public interface StoryValidateService {
      * @param storyId id
      * @return 存在返回true
      */
-    boolean checkStoryExist(Long storyId);
+    boolean checkStoryExist(Integer storyId);
 
     /**
      * 检查标签是否存在
@@ -21,7 +21,7 @@ public interface StoryValidateService {
      * @param labelId 标签id
      * @return 存在返回true
      */
-    boolean checkLabelsExist(Long labelId);
+    boolean checkLabelsExist(Integer labelId);
 
     /**
      * 检查作者是否为当前故事的创作者
@@ -30,7 +30,7 @@ public interface StoryValidateService {
      * @param storyId  id
      * @return 是返回true
      */
-    boolean isCreatorOfStory(Long writerId, Long storyId);
+    boolean isCreatorOfStory(Integer writerId, Integer storyId);
 
     /**
      * 检验是否合法
@@ -56,6 +56,6 @@ public interface StoryValidateService {
      * @param storyId id
      * @return 存在返回true
      */
-    boolean checkStoryStatisticExist(Long storyId);
+    boolean checkStoryStatisticExist(Integer storyId);
 
 }

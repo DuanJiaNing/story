@@ -18,7 +18,7 @@ public interface StoryStatisticsService {
      * @param storyId id
      * @return 查询结果
      */
-    ResultModel<StoryStatisticsDTO> getStoryStatistics(Long storyId);
+    ResultModel<StoryStatisticsDTO> getStoryStatistics(Integer storyId);
 
     /**
      * 获取故事统计信息（只获取数据量）
@@ -26,7 +26,7 @@ public interface StoryStatisticsService {
      * @param storyId id
      * @return 查询结果
      */
-    ResultModel<StoryBaseStatisticsDTO> getStoryStatisticsCount(Long storyId);
+    ResultModel<StoryBaseStatisticsDTO> getStoryStatisticsCount(Integer storyId);
 
 }
 

@@ -21,7 +21,7 @@ public interface ProfileService {
      * @param intro    一句话简介
      * @return 新纪录id
      */
-    Long insertProfile(Long writerId, Long avatarId, String phone, String email, String aboutMe, String intro);
+    Integer insertProfile(Integer writerId, Integer avatarId, String phone, String email, String aboutMe, String intro);
 
     /**
      * 更新资料
@@ -34,7 +34,7 @@ public interface ProfileService {
      * @param newIntro   新的一句话简介，不改变传 null
      * @return 更新失败为false
      */
-    boolean updateProfile(Long writerId, Long avatarId, String newPhone, String newEmail, String newAboutMe,
+    boolean updateProfile(Integer writerId, Integer avatarId, String newPhone, String newEmail, String newAboutMe,
                           String newIntro);
 
     /**
@@ -43,7 +43,7 @@ public interface ProfileService {
      * @param writerId id
      * @return 删除成功为true
      */
-    boolean deleteProfile(Long writerId);
+    boolean deleteProfile(Integer writerId);
 
     /**
      * 查询资料
@@ -51,7 +51,7 @@ public interface ProfileService {
      * @param writerId id
      * @return 查询结果
      */
-    ProfileDTO getProfile(Long writerId);
+    ProfileDTO getProfile(Integer writerId);
 
     /**
      * 通过电话号码获得资料

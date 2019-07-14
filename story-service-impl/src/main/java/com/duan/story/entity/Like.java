@@ -13,10 +13,10 @@ import java.sql.Timestamp;
 @Data
 public class Like implements Serializable {
 
-    private static final long serialVersionUID = 7850020610771820655L;
-    private Long id;
-    private Long storyId;
-    private Long likerId;
+    private static final Long serialVersionUID = 7850020610771820655L;
+    private Integer id;
+    private Integer storyId;
+    private Integer likerId;
     private Timestamp likeDate;
 
 }

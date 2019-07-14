@@ -1,6 +1,5 @@
 package com.duan.story.impl.statistics;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.*;
 import com.duan.story.dao.*;
@@ -11,6 +10,7 @@ import com.duan.story.util.DataConverter;
 import com.duan.story.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
     private WriterService writerService;
 
     @Override
-    public ResultModel<StoryStatisticsDTO> getStoryStatistics(Long storyId) {
+    public ResultModel<StoryStatisticsDTO> getStoryStatistics(Integer storyId) {
         Story story = storyDao.findStoryById(storyId);
         if (story == null) {
             log.warn("story with id %s not exist", storyId);
@@ -76,7 +76,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
         // 喜欢该篇文章的人
         List<Like> likeList = likeDao.listLikeByStoryId(storyId);
         if (!CollectionUtils.isEmpty(likeList)) {
-            List<Long> ids = likeList.stream()
+            List<Integer> ids = likeList.stream()
                     .map(Like::getLikerId)
                     .collect(Collectors.toList());
             List<WriterDTO> likes = writerService.listWriter(ids);
@@ -86,7 +86,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
         // 收藏了该篇文章的人
         List<Collect> collectList = collectDao.listCollectByStoryId(storyId);
         if (!CollectionUtils.isEmpty(collectList)) {
-            List<Long> ids = collectList.stream()
+            List<Integer> ids = collectList.stream()
                     .map(Collect::getCollectorId)
                     .collect(Collectors.toList());
             List<WriterDTO> collects = writerService.listWriter(ids);
@@ -96,7 +96,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
         // 评论过该篇文章的人
         List<Comment> commentList = commentDao.listCommentByStoryId(storyId);
         if (!CollectionUtils.isEmpty(commentList)) {
-            List<Long> ls = commentList.stream()
+            List<Integer> ls = commentList.stream()
                     .map(Comment::getSpokesmanId)
                     .collect(Collectors.toList());
             List<WriterDTO> commenter = writerService.listWriter(ls);
@@ -106,7 +106,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
         // 类别
         List<StoryCategoryRela> relas = categoryRelaDao.listStoryCategoryRelaByStoryId(storyId);
         if (!CollectionUtils.isEmpty(relas)) {
-            List<Long> cids = relas.stream()
+            List<Integer> cids = relas.stream()
                     .map(StoryCategoryRela::getCategoryId)
                     .collect(Collectors.toList());
             List<Category> categories = categoryDao.listCategoryByIds(cids);
@@ -118,7 +118,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
         // 标签
         List<StoryLabelRela> lrelas = labelRelaDao.listStoryLabelRelaByStoryId(storyId);
         if (!CollectionUtils.isEmpty(lrelas)) {
-            List<Long> lids = lrelas.stream()
+            List<Integer> lids = lrelas.stream()
                     .map(StoryLabelRela::getLabelId)
                     .collect(Collectors.toList());
             List<Label> labels = labelDao.listLabelByIds(lids);
@@ -131,7 +131,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
     }
 
     @Override
-    public ResultModel<StoryBaseStatisticsDTO> getStoryStatisticsCount(Long storyId) {
+    public ResultModel<StoryBaseStatisticsDTO> getStoryStatisticsCount(Integer storyId) {
         return ResultModel.fail();
     }
 

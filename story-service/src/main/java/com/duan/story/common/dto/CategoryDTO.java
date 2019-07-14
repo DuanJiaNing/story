@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 @Data
 public class CategoryDTO implements Serializable {
 
-    private static final long serialVersionUID = 6659348430081547146L;
-    private Long id;
-    private Long writerId;
+    private static final Long serialVersionUID = 6659348430081547146L;
+    private Integer id;
+    private Integer writerId;
     private Integer storyAmount;
     private String title;
     private String bewrite;

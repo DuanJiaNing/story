@@ -16,6 +16,6 @@ public interface SettingService {
      * @param writerId id
      * @return 查询结果
      */
-    SettingDTO getSetting(Long writerId);
+    SettingDTO getSetting(Integer writerId);
 
 }

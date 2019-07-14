@@ -7,7 +7,7 @@ package com.duan.story.util;
  */
 public class CurrentUserThreadLocal {
 
-    private static final ThreadLocal<Long> currentUid = new ThreadLocal<>();
+    private static final ThreadLocal<Integer> currentUid = new ThreadLocal<>();
     private static final ThreadLocal<String> currentLocale = new ThreadLocal<>();
     private static final ThreadLocal<String> currentIp = new ThreadLocal<>();
 
@@ -19,11 +19,11 @@ public class CurrentUserThreadLocal {
         currentIp.set(ip);
     }
 
-    public static Long getCurrentUid() {
+    public static Integer getCurrentUid() {
         return currentUid.get();
     }
 
-    public static void setCurrentUid(Long uid) {
+    public static void setCurrentUid(Integer uid) {
         currentUid.set(uid);
     }
 

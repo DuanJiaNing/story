@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class StoryImportTitleIdDTO implements Serializable {
 
-    private static final long serialVersionUID = -5877719215260338615L;
+    private static final Long serialVersionUID = -5877719215260338615L;
     private String title;
-    private Long id;
+    private Integer id;
 }

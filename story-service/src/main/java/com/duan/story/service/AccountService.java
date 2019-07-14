@@ -1,6 +1,7 @@
 package com.duan.story.service;
 
 
+import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.AccountDTO;
 
 /**
@@ -17,7 +18,7 @@ public interface AccountService {
      * @param password 密码
      * @return id
      */
-    Long insertAccount(String username, String password);
+    ResultModel<AccountDTO> insertAccount(String username, String password);
 
     /**
      * 根据用户名获取账户
@@ -33,7 +34,7 @@ public interface AccountService {
      * @param id id
      * @return 删除成功返回 true
      */
-    boolean deleteAccount(Long id);
+    boolean deleteAccount(Integer id);
 
     /**
      * 更新用户名
@@ -42,7 +43,7 @@ public interface AccountService {
      * @param newUsername 新的用户名
      * @return 更新成功返回 true
      */
-    boolean updateAccountUsername(Long id, String newUsername);
+    boolean updateAccountUsername(Integer id, String newUsername);
 
     /**
      * 更新密码
@@ -52,7 +53,7 @@ public interface AccountService {
      * @param newPassword 新的密码
      * @return 更新成功返回 true
      */
-    boolean updateAccountPassword(Long id, String oldPassword, String newPassword);
+    boolean updateAccountPassword(Integer id, String oldPassword, String newPassword);
 
     /**
      * 根据电话号码获得账户
@@ -68,5 +69,5 @@ public interface AccountService {
      * @param id id
      * @return 不存在返回 null
      */
-    AccountDTO getAccount(Long id);
+    AccountDTO getAccount(Integer id);
 }

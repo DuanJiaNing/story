@@ -23,7 +23,7 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @Component
-public class StoryLuceneIndexManager extends LuceneIndexManager<Story, Long, List<Long>> {
+public class StoryLuceneIndexManager extends LuceneIndexManager<Story, Integer, List<Integer>> {
 
     private static final String INDEX_STORY_ID = "story_id";
     private static final String INDEX_STORY_TITLE = "story_title";
@@ -36,7 +36,7 @@ public class StoryLuceneIndexManager extends LuceneIndexManager<Story, Long, Lis
     }
 
     @Override
-    protected Term getIdFieldTerm(Long id) {
+    protected Term getIdFieldTerm(Integer id) {
         return new Term(INDEX_STORY_ID, id + "");
     }
 
@@ -69,11 +69,11 @@ public class StoryLuceneIndexManager extends LuceneIndexManager<Story, Long, Lis
     }
 
     @Override
-    protected List<Long> getResult(IndexSearcher is, TopDocs topDocs, String word, int count) throws IOException {
-        List<Long> result = new ArrayList<>(count);
+    protected List<Integer> getResult(IndexSearcher is, TopDocs topDocs, String word, int count) throws IOException {
+        List<Integer> result = new ArrayList<>(count);
         for (ScoreDoc doc : topDocs.scoreDocs) {
             Document document = is.doc(doc.doc);
-            result.add(Long.valueOf(document.get(INDEX_STORY_ID)));
+            result.add(Integer.valueOf(document.get(INDEX_STORY_ID)));
         }
 
         return result;

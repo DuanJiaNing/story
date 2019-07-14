@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 public class FileVO implements Serializable {
 
-    private static final long serialVersionUID = -5629820867784201367L;
+    private static final Long serialVersionUID = -5629820867784201367L;
     private InputStream inputStream;
     private String originalFilename;
     private String contentType;

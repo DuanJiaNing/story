@@ -21,7 +21,7 @@ public interface CollectService {
      * @param sortRule 排序规则，为null则不做约束
      * @return 查询结果
      */
-    ResultModel<PageResult<FavoriteStoryListItemDTO>> listCollect(Long writerId, Integer pageNum, Integer pageSize,
+    ResultModel<PageResult<FavoriteStoryListItemDTO>> listCollect(Integer writerId, Integer pageNum, Integer pageSize,
                                                                   SortRule sortRule);
 
     /**
@@ -32,7 +32,7 @@ public interface CollectService {
      * @param newReason 新的收藏理由
      * @return 更新成功返回true
      */
-    boolean updateCollect(Long writerId, Long storyId, String newReason);
+    boolean updateCollect(Integer writerId, Integer storyId, String newReason);
 
     /**
      * 获得收藏状态
@@ -41,7 +41,7 @@ public interface CollectService {
      * @param storyId  id
      * @return 已收藏为 true
      */
-    boolean getCollectState(Long writerId, Long storyId);
+    boolean getCollectState(Integer writerId, Integer storyId);
 
     /**
      * 统计指定作者的故事收藏数
@@ -49,5 +49,5 @@ public interface CollectService {
      * @param writerId id
      * @return 查询结果
      */
-    int countWriterCollectNum(Long writerId);
+    int countWriterCollectNum(Integer writerId);
 }

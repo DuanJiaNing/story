@@ -15,11 +15,9 @@ public interface LabelService {
     /**
      * 新增标签
      *
-     * @param writerId 标签创建者id
-     * @param title    标签名
      * @return 新纪录id
      */
-    Long insertLabel(Long writerId, String title);
+    ResultModel<LabelDTO> insertLabel(LabelDTO label);
 
     /**
      * 修改标签
@@ -29,7 +27,7 @@ public interface LabelService {
      * @param newTitle 新标签名
      * @return 更新失败为false
      */
-    boolean updateLabel(Long labelId, Long writerId, String newTitle);
+    boolean updateLabel(Integer labelId, Integer writerId, String newTitle);
 
     /**
      * 删除标签，只有标签是当前作者创建的才能删除
@@ -38,7 +36,7 @@ public interface LabelService {
      * @param labelId  标签id
      * @return 删除成功返回true
      */
-    boolean deleteLabel(Long writerId, Long labelId);
+    boolean deleteLabel(Integer writerId, Integer labelId);
 
     /**
      * 获得所有标签
@@ -53,7 +51,7 @@ public interface LabelService {
      * @param labelId 标签id
      * @return 查询结果
      */
-    LabelDTO getLabel(Long labelId);
+    LabelDTO getLabel(Integer labelId);
 
     /**
      * 获取指定作者创建的所有标签
@@ -61,5 +59,5 @@ public interface LabelService {
      * @param writerId id
      * @return 查询结果
      */
-    ResultModel<PageResult<LabelDTO>> listWritersLabel(Long writerId, Integer pageNum, Integer pageSize);
+    ResultModel<PageResult<LabelDTO>> listWritersLabel(Integer writerId, Integer pageNum, Integer pageSize);
 }

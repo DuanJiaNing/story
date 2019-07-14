@@ -14,13 +14,13 @@ import java.util.List;
 @Repository
 public interface CategoryDao extends BaseDao<Category> {
 
-    List<Category> listCategoryByIds(@Param("ids") List<Long> ids);
+    List<Category> listCategoryByIds(@Param("ids") List<Integer> ids);
 
-    List<Category> listCategoryByWriterId(Long writerId);
+    List<Category> listCategoryByWriterId(Integer writerId);
 
-    Category findCategoryById(Long id);
+    Category findCategoryById(Integer id);
 
-    Integer countByWriterId(Long writerId);
+    Integer countByWriterId(Integer writerId);
 
-    Long findIdByTitleAndWriterId(@Param("writerId") Long writerId, @Param("title") String title);
+    Integer findIdByTitleAndWriterId(@Param("writerId") Integer writerId, @Param("title") String title);
 }
