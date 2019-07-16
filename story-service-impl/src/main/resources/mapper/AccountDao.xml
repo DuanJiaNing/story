@@ -45,10 +45,9 @@
         WHERE id = #{value}
     </delete>
 
-    <select id="listIdBySpecNumber" resultType="java.lang.Integer">
-        select id
+    <select id="ListAccount" resultType="com.duan.story.entity.Account">
+        select *
         from account
-        limit 0, #{value}
     </select>
 
 </mapper>

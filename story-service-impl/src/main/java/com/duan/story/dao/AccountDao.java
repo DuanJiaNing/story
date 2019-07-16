@@ -17,5 +17,5 @@ public interface AccountDao extends BaseDao<Account> {
 
     Account findAccountById(Integer id);
 
-    List<Integer> listIdBySpecNumber(int count);
+    List<Account> ListAccount();
 }

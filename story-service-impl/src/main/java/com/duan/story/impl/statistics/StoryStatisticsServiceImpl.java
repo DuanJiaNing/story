@@ -132,7 +132,14 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
 
     @Override
     public ResultModel<StoryBaseStatisticsDTO> getStoryStatisticsCount(Integer storyId) {
-        return ResultModel.fail();
+
+        StoryStatistics statistics = statisticsDao.findStoryStatisticsByStoryId(storyId);
+        if (statistics == null) {
+            log.warn("story statistics with id %s not exist", storyId);
+            return null;
+        }
+
+        return ResultUtil.success(DataConverter.map(statistics, StoryBaseStatisticsDTO.class));
     }
 
 }

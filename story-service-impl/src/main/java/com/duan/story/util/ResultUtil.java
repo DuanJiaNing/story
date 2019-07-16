@@ -1,6 +1,8 @@
 package com.duan.story.util;
 
 import com.duan.story.common.ResultModel;
+import com.github.pagehelper.PageInfo;
+import org.springframework.util.CollectionUtils;
 
 /**
  * Created on 2019/7/14.
@@ -20,5 +22,9 @@ public class ResultUtil {
     public static ResultModel fail(int code) {
         String msg = MessageUtil.getMessage(code);
         return ResultModel.fail(msg, code);
+    }
+
+    public static <T> boolean isPageEmpty(PageInfo<T> info) {
+        return info == null || CollectionUtils.isEmpty(info.getList());
     }
 }

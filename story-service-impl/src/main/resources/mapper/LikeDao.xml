@@ -5,7 +5,7 @@
 <mapper namespace="com.duan.story.dao.LikeDao">
 
     <update id="update" parameterType="com.duan.story.entity.Like">
-        UPDATE like
+        UPDATE `like`
         <set>
             <if test="storyId != null">
                 story_id=#{storyId},
@@ -19,45 +19,45 @@
 
     <delete id="delete">
         DELETE
-        FROM like
+        FROM `like`
         WHERE id = #{value}
     </delete>
 
     <delete id="deleteLikeByLikerIdAndStoryId">
         DELETE
-        FROM like
+        FROM `like`
         WHERE story_id = #{storyId}
           AND liker_id = #{likerId}
     </delete>
 
     <select id="listLikeByStoryId" resultType="com.duan.story.entity.Like">
         SELECT *
-        FROM like
+        FROM `like`
         WHERE story_id = #{value}
     </select>
 
     <select id="countLikeByLikerId" resultType="java.lang.Integer">
         SELECT count(*)
-        FROM like
+        FROM `like`
         WHERE liker_id = #{value}
     </select>
 
     <select id="findLikeByLikerIdAndStoryId" resultType="com.duan.story.entity.Like">
         SELECT *
-        FROM like
+        FROM `like`
         WHERE story_id = #{storyId}
           AND liker_id = #{likerId}
     </select>
 
     <select id="listLikeByLikerId" resultType="com.duan.story.entity.Like">
         SELECT *
-        FROM like
+        FROM `like`
         WHERE liker_id = #{likerId}
         order by ${sortRule.rule.code} ${sortRule.order.code}
     </select>
 
     <insert id="insert" parameterType="com.duan.story.entity.Like" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO like (story_id, liker_id, like_date)
+        INSERT INTO `like` (story_id, liker_id, like_date)
         VALUE (#{storyId}, #{likerId}, NOW())
     </insert>
 
