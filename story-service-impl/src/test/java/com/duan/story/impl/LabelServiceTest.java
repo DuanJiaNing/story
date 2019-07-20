@@ -22,7 +22,7 @@ public class LabelServiceTest extends T {
 
         LabelDTO l1 = new LabelDTO();
         l1.setTitle("4 label");
-        l1.setWriterId(T.account_duan_id);
+        l1.setWriterId(T.account_id.get(0));
         ResultModel<LabelDTO> fl = labelService.insertLabel(l1);
     }
 

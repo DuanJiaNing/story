@@ -31,21 +31,23 @@ public class WriterServiceImpl implements WriterService {
     @Override
     public List<WriterDTO> listWriter(List<Integer> ids) {
         List<WriterDTO> writers = new ArrayList<>();
-        ids.forEach(id -> {
-            Account account = accountDao.findAccountById(id);
-            WriterDTO w = new WriterDTO();
-            w.setId(account.getId());
-            w.setRegisterDate(account.getRegisterDate());
-            w.setUsername(account.getUsername());
-            writers.add(w);
-        });
-
-        writers.forEach(w -> {
-            Profile profile = profileDao.findProfileByWriterId(w.getId());
-            w.setProfile(DataConverter.map(profile, ProfileDTO.class));
-        });
+        ids.forEach(id -> writers.add(getWriterDTO(id)));
 
         return writers;
+    }
+
+    @Override
+    public WriterDTO getWriterDTO(Integer id) {
+        WriterDTO w = new WriterDTO();
+
+        Account account = accountDao.findAccountById(id);
+        w.setId(account.getId());
+        w.setRegisterDate(account.getRegisterDate());
+        w.setUsername(account.getUsername());
+
+        Profile profile = profileDao.findProfileByWriterId(w.getId());
+        w.setProfile(DataConverter.map(profile, ProfileDTO.class));
+        return w;
     }
 
 }

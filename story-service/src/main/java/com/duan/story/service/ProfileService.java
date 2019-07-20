@@ -1,6 +1,7 @@
 package com.duan.story.service;
 
 
+import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.ProfileDTO;
 
 /**
@@ -13,29 +14,16 @@ public interface ProfileService {
     /**
      * 新增资料
      *
-     * @param writerId id
-     * @param avatarId 头像id
-     * @param phone    手机号
-     * @param email    电子邮件
-     * @param aboutMe  关于我
-     * @param intro    一句话简介
      * @return 新纪录id
      */
-    Integer insertProfile(Integer writerId, Integer avatarId, String phone, String email, String aboutMe, String intro);
+    ResultModel<Integer> insertProfile(ProfileDTO profile);
 
     /**
      * 更新资料
      *
-     * @param writerId   id
-     * @param avatarId   头像id,不改变传 -1
-     * @param newPhone   新的电话号码，不改变传 null
-     * @param newEmail   新的邮箱，不改变传 null
-     * @param newAboutMe 新的“关于我”，不改变传 null
-     * @param newIntro   新的一句话简介，不改变传 null
      * @return 更新失败为false
      */
-    boolean updateProfile(Integer writerId, Integer avatarId, String newPhone, String newEmail, String newAboutMe,
-                          String newIntro);
+    ResultModel<Boolean> updateProfile(ProfileDTO profile);
 
     /**
      * 删除资料

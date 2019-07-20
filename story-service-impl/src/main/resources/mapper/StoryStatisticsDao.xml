@@ -117,4 +117,11 @@
         WHERE story_id = #{value}
     </select>
 
+    <select id="listByWriterId" resultType="com.duan.story.entity.StoryStatistics">
+        SELECT *
+        FROM story_statistics ss
+        LEFT JOIN story s on s.id = ss.story_id
+        WHERE s.writer_id = #{value}
+    </select>
+
 </mapper>

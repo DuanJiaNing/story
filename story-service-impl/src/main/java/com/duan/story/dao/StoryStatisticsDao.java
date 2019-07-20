@@ -26,4 +26,5 @@ public interface StoryStatisticsDao extends BaseDao<StoryStatistics> {
     Integer findViewCountByStoryId(Integer storyId);
     Integer findLikeCountByStoryId(Integer storyId);
 
+    List<StoryStatistics> listByWriterId(Integer writerId);
 }

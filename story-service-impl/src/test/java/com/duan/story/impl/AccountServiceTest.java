@@ -4,9 +4,11 @@ import com.duan.story.T;
 import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.AccountDTO;
 import com.duan.story.service.AccountService;
-import org.junit.Assert;
+import net.bytebuddy.utility.RandomString;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Random;
 
 /**
  * Created on 2019/7/14.
@@ -21,11 +23,20 @@ public class AccountServiceTest extends T {
     @Test
     public void insertAccount() {
 
-        // for farther test
-        ResultModel<AccountDTO> duan = test.insertAccount("duan", "abc123456");
+        char[] cs = "abcdefghijklmnopqrstyvwxyz1234567890".toCharArray();
 
-        ResultModel<AccountDTO> tom = test.insertAccount("tom", "111111");
-        Assert.assertEquals(tom.getCode(), 5002);
+        int count = 8;
+        for (int i = 0; i < count; i++) {
+            String name = RandomString.make(4);
+            StringBuilder ps = new StringBuilder();
+            Random random = new Random();
+            for (int j = 0; j < 8; j++) {
+                ps.append(cs[random.nextInt(cs.length)]);
+            }
+            ResultModel<AccountDTO> rs = test.insertAccount(name, ps.toString());
+            outJson(rs);
+
+        }
 
     }
 

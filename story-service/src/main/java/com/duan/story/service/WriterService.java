@@ -13,4 +13,6 @@ public interface WriterService {
 
     List<WriterDTO> listWriter(List<Integer> ids);
 
+    WriterDTO getWriterDTO(Integer id);
+
 }

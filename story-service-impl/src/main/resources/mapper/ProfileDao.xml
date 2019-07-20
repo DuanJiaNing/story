@@ -25,8 +25,8 @@
             <if test="email != null">
                 email=#{email},
             </if>
-            <if test="avatarId != null">
-                avatar_id=#{avatar},
+            <if test="avatar != null">
+                avatar=#{avatar},
             </if>
             <if test="aboutMe != null">
                 about_me=#{aboutMe},
@@ -49,7 +49,7 @@
     <insert id="insert" parameterType="com.duan.story.entity.Profile" useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO profile (writer_id, avatar, phone, email, about_me, intro)
-        VALUE (#{writerId}, #{avatarId}, #{phone}, #{email}, #{aboutMe}, #{intro})
+        VALUE (#{writerId}, #{avatar}, #{phone}, #{email}, #{aboutMe}, #{intro})
     </insert>
 
 </mapper>

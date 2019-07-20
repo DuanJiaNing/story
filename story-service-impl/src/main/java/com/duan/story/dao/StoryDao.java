@@ -25,13 +25,10 @@ public interface StoryDao extends BaseDao<Story> {
 
     Story findStoryById(Integer id);
 
-    List<Story> listStoryByWriterId(Integer writerId);
-
     Integer countByWriterIdAndState(@Param("writerId") Integer writerId,
                                     @Param("state") int state);
 
-    List<Story> listStoryByWriterIdAndFormat(@Param("writerId") Integer writerId,
-                                             @Param("format") int format);
+    List<Story> listStoryByWriterId(@Param("writerId") Integer writerId);
 
     List<Integer> listIdByWriterId(Integer writerId);
 }

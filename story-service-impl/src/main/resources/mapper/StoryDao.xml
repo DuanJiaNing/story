@@ -80,12 +80,6 @@
         WHERE b.id = #{value}
     </select>
 
-    <select id="listStoryByWriterId" resultType="com.duan.story.entity.Story">
-        SELECT b.id
-        FROM story b
-        WHERE b.writer_id = #{value}
-    </select>
-
     <select id="countByWriterIdAndState" resultType="java.lang.Integer">
         SELECT count(*)
         FROM story
@@ -93,7 +87,7 @@
           AND state = #{state}
     </select>
 
-    <select id="listStoryByWriterIdAndFormat" resultType="com.duan.story.entity.Story">
+    <select id="listStoryByWriterId" resultType="com.duan.story.entity.Story">
         SELECT writer_id, state, title, content, summary, release_date, nearest_modify_date
         FROM story
         WHERE writer_id = #{writerId}

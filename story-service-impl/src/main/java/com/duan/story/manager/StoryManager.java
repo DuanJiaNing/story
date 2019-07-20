@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class StoryManager {
 
     public int calcContentLength(String content) {
-        return -1;
+        return 0;
     }
 
 }
