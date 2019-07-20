@@ -71,7 +71,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO getAccountByUsername(String username) {
-        return null;
+        Account account = accountDao.findAccountByUsername(username);
+        return DataConverter.map(account, AccountDTO.class);
     }
 
     @Override
