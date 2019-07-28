@@ -1,8 +1,8 @@
 package com.duan.story.service;
 
-import com.duan.story.common.dto.CommentDTO;
 import com.duan.story.common.PageResult;
 import com.duan.story.common.ResultModel;
+import com.duan.story.common.dto.CommentDTO;
 
 /**
  * Created on 2018/3/13.

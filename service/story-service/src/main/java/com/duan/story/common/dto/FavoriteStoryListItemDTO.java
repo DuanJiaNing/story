@@ -17,7 +17,6 @@ public class FavoriteStoryListItemDTO implements Serializable {
     private Integer id;
     private Integer writerId;
     private StoryListItemDTO story;
-    private WriterDTO writer;
     private String reason;
     private Timestamp date;
 

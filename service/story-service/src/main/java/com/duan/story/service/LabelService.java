@@ -1,9 +1,9 @@
 package com.duan.story.service;
 
 
-import com.duan.story.common.dto.LabelDTO;
 import com.duan.story.common.PageResult;
 import com.duan.story.common.ResultModel;
+import com.duan.story.common.dto.LabelDTO;
 
 /**
  * Created on 2017/12/18.

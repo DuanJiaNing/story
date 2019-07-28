@@ -3,7 +3,6 @@ package com.duan.story.config.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.duan.story.annonation.TokenNotRequired;
-import com.duan.story.common.ResultModel;
 import com.duan.story.common.util.TokenUtil;
 import com.duan.story.service.OnlineService;
 import com.duan.story.util.CodeMessage;

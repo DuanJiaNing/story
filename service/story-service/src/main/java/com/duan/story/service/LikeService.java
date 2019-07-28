@@ -1,10 +1,10 @@
 package com.duan.story.service;
 
 
-import com.duan.story.common.SortRule;
-import com.duan.story.common.dto.FavoriteStoryListItemDTO;
 import com.duan.story.common.PageResult;
 import com.duan.story.common.ResultModel;
+import com.duan.story.common.SortRule;
+import com.duan.story.common.dto.FavoriteStoryListItemDTO;
 
 /**
  * Created on 2018/3/11.

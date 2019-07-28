@@ -16,7 +16,7 @@ public class CommentDTO implements Serializable {
     private static final Long serialVersionUID = 8591361444007793478L;
     private Integer id;
     private Integer storyId;
-    private WriterDTO spokesman;
+    private Integer spokesmanId;
     private String content;
     private Timestamp releaseDate;
     private int state;

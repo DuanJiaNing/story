@@ -1,11 +1,11 @@
-package com.duan.story.service.validate;
+package com.duan.story.service;
 
 /**
  * Created on 2018/9/13.
  *
  * @author DuanJiaNing
  */
-public interface WriterValidateService {
+public interface AccountValidateService {
 
     /**
      * 检查账号是否存在
@@ -14,15 +14,6 @@ public interface WriterValidateService {
      * @return 存在返回true
      */
     boolean checkAccountExist(Integer id);
-
-    /**
-     * 检查类别是否存在
-     *
-     * @param writerId   id
-     * @param categoryId 类别id
-     * @return 存在时返回true
-     */
-    boolean checkCategoryExist(Integer writerId, Integer categoryId);
 
     /**
      * 注册时检查用户名合法性

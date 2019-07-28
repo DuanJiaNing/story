@@ -10,9 +10,16 @@
 
     <modules>
         <module>story-api</module>
-        <module>story-service</module>
-        <module>story-service-impl</module>
-        <!--<module>blogos-web-sample</module>-->
+
+        <module>service/story-service</module>
+        <module>service/story-service-account</module>
+        <module>service/story-service-statistics</module>
+        <module>service/story-service-base</module>
+
+        <module>service/impl/story-service-impl</module>
+        <module>service/impl/story-service-impl-base</module>
+        <module>service/impl/story-service-account-impl</module>
+        <module>service/impl/story-service-statistics-impl</module>
     </modules>
 
     <packaging>pom</packaging>
