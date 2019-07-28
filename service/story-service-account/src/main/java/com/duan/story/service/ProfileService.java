@@ -12,13 +12,6 @@ import com.duan.story.common.dto.ProfileDTO;
 public interface ProfileService {
 
     /**
-     * 新增资料
-     *
-     * @return 新纪录id
-     */
-    ResultModel<Integer> insertProfile(ProfileDTO profile);
-
-    /**
      * 更新资料
      *
      * @return 更新失败为false

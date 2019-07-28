@@ -1,6 +1,7 @@
 package com.duan.story.impl;
 
 import com.duan.story.T;
+import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.StoryDTO;
 import com.duan.story.common.enums.StoryStatusEnum;
 import com.duan.story.service.StoryService;

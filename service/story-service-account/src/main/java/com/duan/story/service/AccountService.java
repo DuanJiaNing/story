@@ -3,6 +3,8 @@ package com.duan.story.service;
 
 import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.AccountDTO;
+import com.duan.story.common.dto.ProfileDTO;
+import com.duan.story.common.enums.RoleEnum;
 
 /**
  * Created on 2017/12/14.
@@ -13,12 +15,8 @@ public interface AccountService {
 
     /**
      * 新增账户
-     *
-     * @param username 用户名
-     * @param password 密码
-     * @return id
      */
-    ResultModel<AccountDTO> insertAccount(String username, String password);
+    ResultModel<AccountDTO> createAccount(AccountDTO account, ProfileDTO profile, RoleEnum role);
 
     /**
      * 根据用户名获取账户

@@ -2,6 +2,7 @@ package com.duan.story.impl;
 
 import com.duan.story.dao.AccountDao;
 import com.duan.story.service.AccountValidateService;
+import com.duan.story.common.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,7 +18,6 @@ public class AccountValidateServiceImpl implements AccountValidateService {
     @Autowired
     private AccountDao accountDao;
 
-
     @Override
     public boolean checkAccountExist(Integer id) {
         return accountDao.findAccountById(id) != null;
@@ -25,7 +25,7 @@ public class AccountValidateServiceImpl implements AccountValidateService {
 
     @Override
     public boolean checkUserName(String username) {
-        if (StringUtils.isEmpty(username) || accountDao.findAccountByUsername(username) != null) {
+        if (Utils.isStringBlank(username)) {
             return false;
         }
 

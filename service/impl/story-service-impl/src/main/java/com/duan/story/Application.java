@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ImportResource;
  */
 @SpringBootApplication
 @MapperScan("com.duan.story.dao")
-@ImportResource("classpath:spring/spring-*.xml")
 public class Application {
 
     public static void main(String[] args) {

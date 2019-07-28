@@ -2,18 +2,24 @@ package com.duan.story.impl;
 
 import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.AccountDTO;
+import com.duan.story.common.dto.ProfileDTO;
+import com.duan.story.common.enums.RoleEnum;
 import com.duan.story.dao.AccountDao;
+import com.duan.story.dao.ProfileDao;
+import com.duan.story.dao.RoleDao;
 import com.duan.story.dao.SettingDao;
 import com.duan.story.entity.Account;
+import com.duan.story.entity.Profile;
+import com.duan.story.entity.Role;
 import com.duan.story.entity.Setting;
 import com.duan.story.service.AccountService;
-import com.duan.story.service.validate.WriterValidateService;
-import com.duan.story.util.DataConverter;
-import com.duan.story.util.ResultUtil;
-import com.duan.story.util.Util;
-import lombok.extern.slf4j.Slf4j;
+import com.duan.story.service.AccountValidateService;
+import com.duan.story.common.util.DataConverter;
+import com.duan.story.common.util.ResultUtils;
+import com.duan.story.common.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +29,6 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author DuanJiaNing
  */
-@Slf4j
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -34,39 +39,63 @@ public class AccountServiceImpl implements AccountService {
     private SettingDao settingDao;
 
     @Autowired
-    private WriterValidateService writerValidateService;
+    private RoleDao roleDao;
+
+    @Autowired
+    private ProfileDao profileDao;
+
+    @Autowired
+    private AccountValidateService accountValidateService;
 
     @Override
-    public ResultModel<AccountDTO> insertAccount(String username, String password) {
-        if (!writerValidateService.checkUserName(username) || !writerValidateService.checkPassword(password)) {
-            return ResultUtil.fail(5002);
+    @Transactional
+    public ResultModel<AccountDTO> createAccount(AccountDTO account, ProfileDTO profile, RoleEnum role) {
+        if (!accountValidateService.checkUserName(account.getUsername())) {
+            return ResultUtils.fail("invalid username");
+        }
+
+        if (!accountValidateService.checkPassword(account.getPassword())) {
+            return ResultUtils.fail("invalid password");
         }
 
         String shaPwd;
         try {
-            shaPwd = new BigInteger(Util.toSha(password)).toString();
+            shaPwd = new BigInteger(Utils.toSha(account.getPassword())).toString();
         } catch (NoSuchAlgorithmException e) {
-            log.error("got error when encrypted password", e);
-            return ResultUtil.fail();
+            return ResultUtils.fail("encoding password fail", e);
         }
 
-        Account account = new Account();
-        account.setUsername(username);
-        account.setPassword(shaPwd);
-        if (accountDao.insert(account) <= 0) {
-            log.error("got error when insert account");
-            return ResultUtil.fail();
+        Account a = new Account();
+        a.setUsername(account.getUsername());
+        a.setPassword(shaPwd);
+        if (accountDao.insert(a) == 0) {
+            return ResultUtils.fail("insert account fail");
         }
 
-        Integer writerId = account.getId();
+        Integer accountId = a.getId();
         Setting setting = new Setting();
-        setting.setWriterId(writerId);
-        if (settingDao.insert(setting) <= 0) {
-            log.error("got error when insert account setting");
-            return ResultUtil.fail();
+        setting.setAccountId(accountId);
+        if (settingDao.insert(setting) == 0) {
+            return ResultUtils.fail("insert setting fail");
         }
 
-        return ResultUtil.success(DataConverter.map(account, AccountDTO.class));
+        Role r = new Role();
+        r.setRole(role.toString());
+        r.setAccountId(accountId);
+        if (roleDao.insert(r) == 0) {
+            return ResultUtils.fail("insert role fail");
+        }
+
+        Profile p = DataConverter.map(profile, Profile.class);
+        if (p == null) {
+            return ResultUtils.fail();
+        }
+        p.setAccountId(a.getId());
+        if (profileDao.insert(p) == 0) {
+            return ResultUtils.fail("insert profile fail");
+        }
+
+        return ResultUtils.success(DataConverter.map(account, AccountDTO.class));
     }
 
     @Override

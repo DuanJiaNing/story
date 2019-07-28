@@ -6,8 +6,9 @@ import com.duan.story.common.dto.LabelDTO;
 import com.duan.story.dao.LabelDao;
 import com.duan.story.entity.Label;
 import com.duan.story.service.LabelService;
-import com.duan.story.util.ResultUtil;
-import com.duan.story.util.Util;
+import com.duan.story.util.DataConverter;
+import com.duan.story.util.ResultUtils;
+import com.duan.story.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,12 @@ public class LabelServiceImpl implements LabelService {
 
     @Override
     public ResultModel<LabelDTO> insertLabel(LabelDTO label) {
-        if (label.getWriterId() == null || Util.isStringBlank(label.getTitle())) {
-            return ResultUtil.fail(5002);
+        if (label.getWriterId() == null) {
+            return ResultUtils.fail("writer id is require");
+        }
+
+        if (Utils.isStringBlank(label.getTitle())) {
+            return ResultUtils.fail("label title cannot be blank");
         }
 
         Label la = DataConverter.map(label, Label.class);
@@ -33,7 +38,7 @@ public class LabelServiceImpl implements LabelService {
             return null;
         }
 
-        return ResultUtil.success(DataConverter.map(label, LabelDTO.class));
+        return ResultUtils.success(DataConverter.map(label, LabelDTO.class));
     }
 
     @Override

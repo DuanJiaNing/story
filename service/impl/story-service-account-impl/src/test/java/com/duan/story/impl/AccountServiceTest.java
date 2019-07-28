@@ -1,13 +1,13 @@
 package com.duan.story.impl;
 
 import com.duan.story.T;
+import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.AccountDTO;
+import com.duan.story.common.dto.ProfileDTO;
+import com.duan.story.common.enums.RoleEnum;
 import com.duan.story.service.AccountService;
-import net.bytebuddy.utility.RandomString;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Random;
 
 /**
  * Created on 2019/7/14.
@@ -20,22 +20,19 @@ public class AccountServiceTest extends T {
     private AccountService test;
 
     @Test
-    public void insertAccount() {
+    public void createAccount() {
 
-        char[] cs = "abcdefghijklmnopqrstyvwxyz1234567890".toCharArray();
+        AccountDTO a = new AccountDTO();
+        a.setPassword("abc123456");
+        a.setUsername("David");
 
-        int count = 8;
-        for (int i = 0; i < count; i++) {
-            String name = RandomString.make(4);
-            StringBuilder ps = new StringBuilder();
-            Random random = new Random();
-            for (int j = 0; j < 8; j++) {
-                ps.append(cs[random.nextInt(cs.length)]);
-            }
-            ResultModel<AccountDTO> rs = test.insertAccount(name, ps.toString());
-            outJson(rs);
+        ProfileDTO p = new ProfileDTO();
+        p.setEmail("aimeimeits@gmail.com");
+        p.setAboutMe("about me");
+        p.setMotto("This is admin");
 
-        }
+        ResultModel<AccountDTO> rs = test.createAccount(a, p, RoleEnum.ADMIN);
+        outJson(rs);
 
     }
 

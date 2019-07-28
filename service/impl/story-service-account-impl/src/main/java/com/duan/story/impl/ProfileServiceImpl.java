@@ -1,13 +1,9 @@
 package com.duan.story.impl;
 
+import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.ProfileDTO;
-import com.duan.story.dao.ProfileDao;
-import com.duan.story.entity.Profile;
 import com.duan.story.service.ProfileService;
-import com.duan.story.util.DataConverter;
-import com.duan.story.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,24 +14,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class ProfileServiceImpl implements ProfileService {
-
-    @Autowired
-    private ProfileDao profileDao;
-
-    @Override
-    public ResultModel<Integer> insertProfile(ProfileDTO profile) {
-        if (profile.getWriterId() == null) {
-            log.error("writerId can not be null");
-            return ResultUtil.fail(5002);
-        }
-
-        Profile p = DataConverter.map(profile, Profile.class);
-        if (profileDao.insert(p) <= 0) {
-            return ResultUtil.fail();
-        }
-
-        return ResultUtil.success(p.getId());
-    }
 
     @Override
     public ResultModel<Boolean> updateProfile(ProfileDTO profile) {

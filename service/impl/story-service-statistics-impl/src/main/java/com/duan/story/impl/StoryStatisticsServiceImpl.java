@@ -5,7 +5,7 @@ import com.duan.story.common.dto.*;
 import com.duan.story.service.WriterService;
 import com.duan.story.service.statistics.StoryStatisticsService;
 import com.duan.story.util.DataConverter;
-import com.duan.story.util.ResultUtil;
+import com.duan.story.util.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -125,7 +125,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
             ss.setLabels(ll);
         }
 
-        return ResultUtil.success(ss);
+        return ResultUtils.success(ss);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class StoryStatisticsServiceImpl implements StoryStatisticsService {
             return null;
         }
 
-        return ResultUtil.success(DataConverter.map(statistics, StoryBaseStatisticsDTO.class));
+        return ResultUtils.success(DataConverter.map(statistics, StoryBaseStatisticsDTO.class));
     }
 
 }

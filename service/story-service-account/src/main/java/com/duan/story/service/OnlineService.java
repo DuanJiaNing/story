@@ -2,7 +2,7 @@ package com.duan.story.service;
 
 import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.LoginResultDTO;
-import com.duan.story.common.vo.LoginVO;
+import com.duan.story.common.vo.SignInVO;
 
 /**
  * Created on 2018/9/14.
@@ -19,7 +19,7 @@ public interface OnlineService {
     /**
      * 登入
      */
-    ResultModel<LoginResultDTO> login(LoginVO account);
+    ResultModel<LoginResultDTO> login(SignInVO account);
 
     /**
      * 登出

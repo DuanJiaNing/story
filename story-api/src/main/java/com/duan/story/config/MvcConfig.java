@@ -31,7 +31,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         //   registry.addInterceptor(new ApiSignCheckIntercept());
         registry.addInterceptor(new IpInterceptor());
-        registry.addInterceptor(new TokenInterceptor());
+//        registry.addInterceptor(new TokenInterceptor());
     }
 
     @Override

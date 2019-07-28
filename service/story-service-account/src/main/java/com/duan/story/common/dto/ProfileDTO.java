@@ -19,6 +19,6 @@ public class ProfileDTO implements Serializable {
     private String phone;
     private String email;
     private String aboutMe;
-    private String intro;
+    private String motto;
 
 }

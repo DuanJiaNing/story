@@ -1,6 +1,6 @@
 package com.duan.story.config;
 
-import com.duan.story.util.SpringUtil;
+import com.duan.story.util.SpringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -22,7 +22,7 @@ public class AppConfig implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringUtil.setApplicationContext(applicationContext);
+        SpringUtils.setApplicationContext(applicationContext);
     }
 
     @Bean

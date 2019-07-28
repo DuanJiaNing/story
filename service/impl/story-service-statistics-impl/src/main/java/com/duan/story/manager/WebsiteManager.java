@@ -1,6 +1,6 @@
 package com.duan.story.manager;
 
-import com.duan.story.util.ResultUtil;
+import com.duan.story.util.ResultUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class WebsiteManager {
 
         PageHelper.startPage(1, count);
         PageInfo<Account> info = new PageInfo<>(accountDao.ListAccount());
-        if (ResultUtil.isPageEmpty(info)) {
+        if (ResultUtils.isPageEmpty(info)) {
             return null;
         }
 

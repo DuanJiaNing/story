@@ -15,9 +15,6 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class WebConfig implements WebMvcRegistrations {
 
-    /**
-     * 跨域设置
-     */
     private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("*");
@@ -27,9 +24,6 @@ public class WebConfig implements WebMvcRegistrations {
         return corsConfiguration;
     }
 
-    /**
-     * 跨域过滤器
-     */
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

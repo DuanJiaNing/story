@@ -18,7 +18,7 @@ import com.duan.story.manager.StoryLuceneIndexManager;
 import com.duan.story.manager.StoryManager;
 import com.duan.story.service.StoryService;
 import com.duan.story.util.DataConverter;
-import com.duan.story.util.ResultUtil;
+import com.duan.story.util.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,6 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-@Slf4j
 @Service
 public class StoryServiceImpl implements StoryService {
 
@@ -58,12 +57,11 @@ public class StoryServiceImpl implements StoryService {
     @Override
     public ResultModel<StoryDTO> insertStory(StoryDTO story, List<Integer> categories, List<Integer> labels) {
         if (story == null) {
-            log.error("story can not be null");
-            return ResultUtil.fail(5000);
+            return ResultUtils.fail("story can not be null");
         }
 
         if (story.getState() == null || StoryStatusEnum.valueOf(story.getState()) == null) {
-            return ResultUtil.fail(5002);
+            return ResultUtils.fail("story state error");
         }
 
         Story stortEntity = DataConverter.map(story, Story.class);
@@ -71,8 +69,7 @@ public class StoryServiceImpl implements StoryService {
         // insert story
         // TODO story content validate
         if (storyDao.insert(stortEntity) <= 0) {
-            log.error("got error when insert story");
-            return ResultUtil.fail(5001);
+            return ResultUtils.fail("insert story fail");
         }
 
         // insert labels and categories
@@ -89,19 +86,17 @@ public class StoryServiceImpl implements StoryService {
         statistics.setStoryId(storyId);
         statistics.setWordCount(storyManager.calcContentLength(stortEntity.getContent()));
         if (statisticsDao.insert(statistics) <= 0) {
-            log.error("got error when insert story statistics");
-            return ResultUtil.fail(5001);
+            return ResultUtils.fail("insert story statistics fail");
         }
 
         // create lucene index
         try {
             storyLuceneIndexManager.addIndex(stortEntity);
         } catch (IOException e) {
-            log.error("got error when add lucene index", e);
-            return ResultUtil.fail(5001);
+            return ResultUtils.fail("add index for story fail",e);
         }
 
-        return ResultUtil.success(story);
+        return ResultUtils.success(story);
     }
 
     private void insertCategoryAndLabels(Integer storyId, List<Integer> categories, List<Integer> labels) {

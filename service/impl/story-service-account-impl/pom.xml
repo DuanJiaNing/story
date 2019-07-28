@@ -104,7 +104,6 @@
 
 
         <!-- 将 markdown 转为 Html *************************************************************** ^-->
-        <!-- https://mvnrepository.com/artifact/com.vladsch.flexmark/flexmark -->
         <dependency>
             <groupId>com.vladsch.flexmark</groupId>
             <artifactId>flexmark</artifactId>
@@ -122,7 +121,6 @@
             <artifactId>spring-context-support</artifactId>
             <version>4.3.8.RELEASE</version>
         </dependency>
-        <!-- 邮件发送 *************************************************************** v-->
 
 
         <dependency>
@@ -151,13 +149,6 @@
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-highlighter</artifactId>
             <version>${lucene.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.8.8</version>
         </dependency>
 
 

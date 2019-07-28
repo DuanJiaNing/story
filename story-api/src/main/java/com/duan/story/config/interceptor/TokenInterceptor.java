@@ -3,12 +3,14 @@ package com.duan.story.config.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.duan.story.annonation.TokenNotRequired;
+import com.duan.story.common.ResultModel;
 import com.duan.story.common.util.TokenUtil;
 import com.duan.story.service.OnlineService;
-import com.duan.story.util.CodeMessage;
 import com.duan.story.util.CurrentUserThreadLocal;
-import com.duan.story.util.SpringUtil;
-import com.duan.story.util.Util;
+import com.duan.story.util.ResultUtils;
+import com.duan.story.util.SpringUtils;
+import com.duan.story.util.Utils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DuanJiaNing
  */
+@Slf4j
 public class TokenInterceptor extends HandlerInterceptorAdapter {
 
     @Override
@@ -30,20 +33,18 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        String token = Util.getToken();
+        String token = Utils.getToken();
 
-        // 判断请求是否有 token，非法 token
         if (token == null || illegalToken(token)) {
-            ResultModel resultModel = ResultModel.fail("token required", CodeMessage.TOKEN_REQUIRED.getCode());
+            ResultModel resultModel = ResultUtils.fail(1001);
             response.setContentType("application/json;charset=utf-8");
             response.getWriter().print(JSON.toJSONString(resultModel));
 
             return false;
         }
 
-        // token 非法
         if (expiredToken(token)) {
-            ResultModel resultModel = ResultModel.fail("invalid token", CodeMessage.INVALID_TOKEN.getCode());
+            ResultModel resultModel = ResultUtils.fail(1002);
             response.setContentType("application/json;charset=utf-8");
             response.getWriter().print(JSON.toJSONString(resultModel));
 
@@ -53,15 +54,11 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 
-    /**
-     * 非法 token
-     * 无法解密的 token 即为非法 token
-     */
     private boolean illegalToken(String token) {
-
         try {
             TokenUtil.decode(token);
         } catch (Exception e) {
+            log.error("got error when decode token: %s", e);
             return true;
         }
 
@@ -69,13 +66,10 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     }
 
 
-    /**
-     * token 已过期
-     */
     private boolean expiredToken(String token) {
 
         try {
-            OnlineService onlineService = SpringUtil.getBean(OnlineService.class);
+            OnlineService onlineService = SpringUtils.getBean(OnlineService.class);
             Integer bloggerId = onlineService.getLoginWriterId(token);
             if (bloggerId == null) {
                 return true;
@@ -91,11 +85,6 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     }
 
 
-    /**
-     * 判断是否需要处理
-     *
-     * @return 不用处理返回 ture
-     */
     private boolean canHandle(Object handler) {
 
         if (!(handler instanceof HandlerMethod)) {

@@ -1,11 +1,14 @@
 package com.duan.story.impl;
 
+import com.duan.story.common.PageResult;
+import com.duan.story.common.ResultModel;
 import com.duan.story.common.dto.CategoryDTO;
 import com.duan.story.dao.CategoryDao;
 import com.duan.story.entity.Category;
 import com.duan.story.service.CategoryService;
-import com.duan.story.util.ResultUtil;
-import com.duan.story.util.Util;
+import com.duan.story.util.DataConverter;
+import com.duan.story.util.ResultUtils;
+import com.duan.story.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +25,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResultModel<CategoryDTO> insertCategory(CategoryDTO category) {
-        if (category.getWriterId() == null || Util.isStringBlank(category.getTitle())) {
-            return ResultUtil.fail(5002);
+        if (category.getWriterId() == null || Utils.isStringBlank(category.getTitle())) {
+            return ResultUtils.fail("");
         }
 
         Category cg = DataConverter.map(category, Category.class);
@@ -31,7 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
             return null;
         }
 
-        return ResultUtil.success(DataConverter.map(cg, CategoryDTO.class));
+        return ResultUtils.success(DataConverter.map(cg, CategoryDTO.class));
     }
 
     @Override
