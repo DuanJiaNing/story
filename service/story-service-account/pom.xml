@@ -18,12 +18,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.duan.story</groupId>
-            <artifactId>story-service-base</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
         <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>

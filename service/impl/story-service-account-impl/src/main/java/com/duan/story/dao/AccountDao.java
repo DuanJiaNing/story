@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountDao extends BaseDao<Account> {
 
-    Account findAccountByUsername(String username);
-
     Account findAccountById(Integer id);
 
 }
